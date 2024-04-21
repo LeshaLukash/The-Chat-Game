@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://chat_container.tscn" type="PackedScene" id=1]
+[ext_resource path="res://chat_background.jpg" type="Texture" id=2]
+[ext_resource path="res://chat_header.tscn" type="PackedScene" id=3]
+[ext_resource path="res://chat.gd" type="Script" id=4]
+[ext_resource path="res://side_panel.tscn" type="PackedScene" id=5]
+
+[node name="Chat" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+script = ExtResource( 4 )
+
+[node name="Background" type="TextureRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 7
+
+[node name="ColorBackground" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.196078, 0.447059, 0.407843, 1 )
+
+[node name="ChatContainer" parent="." instance=ExtResource( 1 )]
+margin_top = 65.0
+
+[node name="ChatHeader" parent="." instance=ExtResource( 3 )]
+
+[node name="FadeRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 0 )
+
+[node name="SidePanel" parent="." instance=ExtResource( 5 )]
+margin_left = -430.0
+margin_right = -720.0
+
+[connection signal="item_rect_changed" from="ChatContainer" to="." method="_on_ChatContainer_item_rect_changed"]
+[connection signal="side_panel_dragged" from="SidePanel" to="." method="_on_SidePanel_side_panel_dragged"]

@@ -1,0 +1,7 @@
+{
+	"default": "res://avatars/default_avatar.png",
+	"Алексей": "res://avatars/default_avatar.png",
+	"Денис": "res://avatars/mr_pink.png",
+	"Godot": "res://avatars/godot.png",
+	"empty": "res://avatars/empty_avatar.png"
+}
