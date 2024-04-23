@@ -13,6 +13,7 @@ script = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 360, 1280 )
+color = Color( 0.3655, 0.43, 0.3999, 1 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
 anchor_right = 1.0
@@ -20,48 +21,53 @@ anchor_bottom = 1.0
 
 [node name="MarginContainer3" type="MarginContainer" parent="ColorRect/VBoxContainer"]
 margin_right = 720.0
-margin_bottom = 186.0
+margin_bottom = 177.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.22
 
 [node name="AccountButton" type="Button" parent="ColorRect/VBoxContainer/MarginContainer3"]
+unique_name_in_owner = true
 margin_right = 720.0
-margin_bottom = 186.0
-text = "Никнейм"
+margin_bottom = 177.0
+text = "Имя аккаунта"
 icon = ExtResource( 2 )
 flat = true
 expand_icon = true
 
 [node name="ChatButton" type="Button" parent="ColorRect/VBoxContainer"]
 unique_name_in_owner = true
-margin_top = 190.0
+margin_top = 181.0
 margin_right = 720.0
-margin_bottom = 228.0
+margin_bottom = 231.0
+rect_min_size = Vector2( 0, 50 )
 text = "Название беседы"
 
 [node name="MarginContainer" type="MarginContainer" parent="ColorRect/VBoxContainer"]
-margin_top = 232.0
+margin_top = 235.0
 margin_right = 720.0
-margin_bottom = 1081.0
+margin_bottom = 1043.0
 size_flags_vertical = 3
 
 [node name="OptionsButton" type="Button" parent="ColorRect/VBoxContainer"]
 unique_name_in_owner = true
-margin_top = 1085.0
+margin_top = 1047.0
 margin_right = 720.0
-margin_bottom = 1123.0
+margin_bottom = 1107.0
+rect_min_size = Vector2( 0, 60 )
 text = "Настройки"
 
-[node name="AboutButton" type="Button" parent="ColorRect/VBoxContainer"]
+[node name="ReportButton" type="Button" parent="ColorRect/VBoxContainer"]
 unique_name_in_owner = true
-margin_top = 1127.0
+margin_top = 1111.0
 margin_right = 720.0
-margin_bottom = 1165.0
+margin_bottom = 1171.0
+rect_min_size = Vector2( 0, 60 )
 size_flags_stretch_ratio = 2.0
-text = "О нас"
+disabled = true
+text = "Составить рапорт"
 
 [node name="MarginContainer2" type="MarginContainer" parent="ColorRect/VBoxContainer"]
-margin_top = 1169.0
+margin_top = 1175.0
 margin_right = 720.0
 margin_bottom = 1280.0
 size_flags_vertical = 3
@@ -70,4 +76,4 @@ size_flags_stretch_ratio = 0.13
 [connection signal="item_rect_changed" from="." to="." method="_on_SidePanel_item_rect_changed"]
 [connection signal="pressed" from="ColorRect/VBoxContainer/ChatButton" to="." method="_on_ChatButton_pressed"]
 [connection signal="pressed" from="ColorRect/VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
-[connection signal="pressed" from="ColorRect/VBoxContainer/AboutButton" to="." method="_on_AboutButton_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/ReportButton" to="." method="_on_AboutButton_pressed"]

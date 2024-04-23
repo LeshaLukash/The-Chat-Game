@@ -6,7 +6,7 @@ extends ScrollContainer
 const GROUP_MESSAGES_NAME := "messages"
 const PARAMS_COUNT := 4
 
-export (String, FILE, "*.txt") var chat_text_file = "res://chats/chat_example.txt" setget set_chat
+export (String, FILE, "*.txt") var chat_text_file = "res://chats/chat_example.txt"
 
 onready var message_scene := preload("res://message.tscn")
 onready var info_label_scene := preload("res://info_label.tscn")
@@ -14,8 +14,7 @@ onready var info_label_scene := preload("res://info_label.tscn")
 
 func _ready():
 	load_chat(chat_text_file)
-
-
+	get_v_scrollbar().self_modulate = Color(1, 1, 1, 0.5)
 
 
 # Прокрутить список сообщений на pos-пикселей
@@ -77,7 +76,8 @@ var previous_msg_edited := false
 
 func add_message(params: Dictionary, is_last_msg := false) -> void:
 	current_msg = message_scene.instance()
-	current_msg.add_to_group(GROUP_MESSAGES_NAME) # Добавляю в группу для упрощений массовой обработки
+	# Добавляю в группу для упрощений массовой обработки
+	current_msg.add_to_group(GROUP_MESSAGES_NAME)
 	
 	# ОБРАБОТКА ПОСЛЕДОВАТЕЛЬНОСТИ СООБЩЕНИЙ
 	# Если сообщение от лица того, от кого мы залогинены в системе
@@ -98,19 +98,22 @@ func add_message(params: Dictionary, is_last_msg := false) -> void:
 		if previous_msg.sender == params.sender:
 			# У первого сообщения отключаем только аватарку
 			previous_msg.show_avatar = false
-			
-			# У остальных - ещё и имя
 			if previous_msg_edited == false:
 				previous_msg_edited = true
+				
+			# У остальных - ещё и имя
 			else:
 				previous_msg.show_sender_name = false
 			
-			# Если сообщение последнее - отключаем имя у текущего сообщения!
+			# Если сообщение самое последнее
+			# то включаем имя у текущего сообщения!
 			if is_last_msg:
 				params.show_sender_name = false
+		elif previous_msg_edited:
+			previous_msg.show_sender_name = false
+			previous_msg_edited = false
 	
 	previous_msg = current_msg
-
 	current_msg.init_message(params)
 	$MessagesContainer.add_child(current_msg)
 
@@ -149,10 +152,3 @@ func extract_params(string: String) -> Dictionary:
 	result.place_to_right = bool(int(params[3]))
 	
 	return result
-	
-	
-func set_chat(value: String) -> void:
-	if value != chat_text_file:
-		load_chat(value)
-	
-	chat_text_file = value

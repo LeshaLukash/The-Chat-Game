@@ -1,7 +1,7 @@
 extends Control
 
 # Окно чата
-
+const END_CHAT_SCROLL = 12272		# Длина чата, вертикальная
 const FADE_MAX := 150 				# Макс. затенение экрана сообщений
 const DRAG_LENGTH := 3				# Макс. длина свайпа, после чего проверяется его назначение
 const INERTIA_SCROLL_SPEED := 0.5	# Скорость прокрутки сообщений после того, как игрок отпустил палец
@@ -27,6 +27,10 @@ func _process(_delta):
 	
 	if can_inert_scroll:
 		$ChatContainer.scroll_messages(scroll_speed)
+	
+	# Игрок прочитал чат до конца - может составить протокол
+	if $ChatContainer.scroll_vertical == END_CHAT_SCROLL:
+		$SidePanel.unlock_report_button()
 
 
 # Отслеживаем свайпы по экрану
@@ -86,9 +90,3 @@ func fade_messages(weight: float) -> void:
 func _on_SidePanel_side_panel_dragged(weight: float):
 	fade_messages(weight)
 
-
-func _on_ChatContainer_item_rect_changed():
-	print("message updated")
-	for message in $ChatContainer.get_tree().get_nodes_in_group($ChatContainer.GROUP_MESSAGES_NAME):
-		message.update_message()
-	

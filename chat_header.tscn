@@ -32,8 +32,9 @@ alignment = 1
 
 [node name="Avatar" type="TextureButton" parent="ColorRect/HBoxContainer"]
 unique_name_in_owner = true
+margin_left = 36.0
 margin_top = 2.0
-margin_right = 60.0
+margin_right = 96.0
 margin_bottom = 62.0
 rect_min_size = Vector2( 60, 60 )
 mouse_filter = 2
@@ -43,10 +44,10 @@ expand = true
 
 [node name="Label" type="Label" parent="ColorRect/HBoxContainer"]
 unique_name_in_owner = true
-margin_left = 64.0
+margin_left = 100.0
 margin_top = 16.0
-margin_right = 296.0
+margin_right = 259.0
 margin_bottom = 48.0
-text = "Название беседы"
+text = "Имя беседы"
 
 [connection signal="pressed" from="ColorRect/Button" to="." method="_on_Button_pressed"]

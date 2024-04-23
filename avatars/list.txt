@@ -1,7 +1,8 @@
 {
 	"default": "res://avatars/default_avatar.png",
-	"Алексей": "res://avatars/default_avatar.png",
-	"Денис": "res://avatars/mr_pink.png",
-	"Godot": "res://avatars/godot.png",
-	"empty": "res://avatars/empty_avatar.png"
+	"saxxxy13": "res://avatars/godot.png",
+	"leyfin": "res://avatars/godot.png",
+	"BigMayfield": "res://avatars/godot.png",
+	"JS": "res://avatars/mr_pink.png",
+	"blood_mary01": "res://avatars/godot.png"
 }
