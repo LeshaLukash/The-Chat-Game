@@ -1,8 +1,8 @@
 {
 	"default": "res://avatars/default_avatar.png",
-	"saxxxy13": "res://avatars/godot.png",
-	"leyfin": "res://avatars/godot.png",
+	"Наблюдатель": "res://avatars/avatar_fire.png",
+	"leyfin": "res://avatars/default_avatar.png",
 	"BigMayfield": "res://avatars/godot.png",
 	"JS": "res://avatars/mr_pink.png",
-	"blood_mary01": "res://avatars/godot.png"
+	"bloody_mary01": "res://avatars/avatar_screamface.png"
 }

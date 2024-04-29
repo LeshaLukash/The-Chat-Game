@@ -13,12 +13,14 @@ const LINE_MAX_LENGTH := 400
 # Константы тегов, форматирующих имя отправителя и время в тексте сообщения
 const TIME_TAGS_START := "[right][font=fonts/arial_time.tres]"
 const TIME_TAGS_END := "[/font][/right]"
-const SENDER_TAGS_START := "[color=silver][font=fonts/arial_sender_name.tres]"
+const SENDER_TAGS_START := "[color=#4977C6][font=fonts/arial_sender_name.tres]"
 const SENDER_TAGS_END := "[/font][/color]"
+const TEXT_TAGS_START := "[font=fonts/message_text_font.tres]"
+const TEXT_TAGS_END := "[/font]"
 
 # Файлы шрифтов имени, сообщения и времени
 export (DynamicFont) var sender_font = preload("res://fonts/arial_sender_name.tres")
-export (DynamicFont) var text_font = preload("res://fonts/arial.tres")
+export (DynamicFont) var text_font = preload("res://fonts/message_text_font.tres")
 export (DynamicFont) var time_font = preload("res://fonts/arial_time.tres")
 
 # Строки имени, текста и времени
@@ -60,14 +62,14 @@ func update_message() -> void:
 	get_node("%Avatar").set_self_modulate(Color(1, 1, 1, float(show_avatar)))
 
 	if show_sender_name == true:
-		get_node("%Text").bbcode_text = sender_formatted + '\n' + text_formatted + '\n' +\
+		get_node("%Text").bbcode_text = sender_formatted + '\n' + TEXT_TAGS_START + text_formatted + TEXT_TAGS_END + '\n' +\
 				time_formatted
 	else:
-		get_node("%Text").bbcode_text = text_formatted + '\n' + time_formatted
+		get_node("%Text").bbcode_text = TEXT_TAGS_START + text_formatted + TEXT_TAGS_END + '\n' + time_formatted
 	
 	get_node("%Text").rect_min_size.x = calc_message_width(text_formatted)
 	get_node("%Text").rect_size.x = get_node("%Text").rect_min_size.x
-	get_node("%Panel").rect_size.x = 0.0
+	#get_node("%Panel").rect_size.x = 0.0
 
 
 # Вычислить ширину сообщения, в зависимости от размера содержимого

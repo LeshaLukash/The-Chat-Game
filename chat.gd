@@ -90,3 +90,10 @@ func fade_messages(weight: float) -> void:
 func _on_SidePanel_side_panel_dragged(weight: float):
 	fade_messages(weight)
 
+
+func _on_ChatHeader_header_pressed():
+	$SidePanel.animate_panel(not is_side_panel_visible())
+
+
+func _on_SidePanel_chat_pressed():
+	$SidePanel.animate_panel(not is_side_panel_visible())

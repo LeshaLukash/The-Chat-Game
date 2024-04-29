@@ -36,6 +36,7 @@ func init_avatars_textures() -> void:
 
 # Запрашиваем текстуру аватарки по имени отправителя
 func get_avatar(sender_name := "") -> StreamTexture:
+	print(sender_name)
 	if avatars_db.has(sender_name):
 		return avatars_db[sender_name]
 	
