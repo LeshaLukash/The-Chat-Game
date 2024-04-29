@@ -19,13 +19,13 @@ font_data = ExtResource( 3 )
 [node name="ChatHeader" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 2
+mouse_filter = 1
 script = ExtResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 margin_bottom = 100.0
-mouse_filter = 2
+mouse_filter = 1
 color = Color( 0.33, 0.2409, 0.2409, 1 )
 
 [node name="Button" type="Button" parent="ColorRect"]
