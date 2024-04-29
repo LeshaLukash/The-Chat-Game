@@ -62,13 +62,14 @@ func update_message() -> void:
 	get_node("%Avatar").set_self_modulate(Color(1, 1, 1, float(show_avatar)))
 
 	if show_sender_name == true:
-		get_node("%Text").bbcode_text = sender_formatted + '\n' + TEXT_TAGS_START + text_formatted + TEXT_TAGS_END + '\n' +\
-				time_formatted
+		get_node("%Text").bbcode_text = sender_formatted + '\n' + TEXT_TAGS_START +\
+				text_formatted + TEXT_TAGS_END + '\n' + time_formatted
 	else:
-		get_node("%Text").bbcode_text = TEXT_TAGS_START + text_formatted + TEXT_TAGS_END + '\n' + time_formatted
+		get_node("%Text").bbcode_text = TEXT_TAGS_START + text_formatted +\
+				TEXT_TAGS_END + '\n' + time_formatted
 	
 	get_node("%Text").rect_min_size.x = calc_message_width(text_formatted)
-	get_node("%Text").rect_size.x = get_node("%Text").rect_min_size.x
+	#get_node("%Text").rect_size.x = get_node("%Text").rect_min_size.x
 	#get_node("%Panel").rect_size.x = 0.0
 
 
@@ -86,7 +87,7 @@ func calc_message_width(text_formatted: String) -> int:
 	var time_length: int = $TextFormatter.get_line_pixel_length(get_time_status(), time_font)
 	
 	var length_to_compare := [sender_length, text_length, time_length]
-	var panel_width := int(clamp(length_to_compare.max(), 0, LINE_MAX_LENGTH))
+	var panel_width := int(ceil(clamp(length_to_compare.max(), 0, LINE_MAX_LENGTH)))
 	return panel_width
 
 
@@ -143,3 +144,7 @@ func set_show_avatar(value: bool):
 func _on_Avatar_pressed():
 	print("Аватарка отправителя была нажата")
 	emit_signal("avatar_pressed")
+
+
+func _on_Message_item_rect_changed():
+	update_message()

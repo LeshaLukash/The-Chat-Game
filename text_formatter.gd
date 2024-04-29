@@ -109,7 +109,7 @@ func get_array_last_idx(a: Array):
 
 # Получить длину строки, в пикселях
 func get_line_pixel_length(string: String, font: DynamicFont) -> int:
-	return int(font.get_string_size(string).x)
+	return int(ceil(font.get_string_size(string).x))
 
 
 # Получить самую длинную строку в сообщении
