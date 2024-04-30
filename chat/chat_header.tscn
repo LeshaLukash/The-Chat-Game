@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://avatars/grail.png" type="Texture" id=1]
 [ext_resource path="res://chat/chat_header.gd" type="Script" id=2]
 [ext_resource path="res://fonts/arial.ttf" type="DynamicFontData" id=3]
-
+[ext_resource path="res://chat/burger_button.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://fonts/arialbd.ttf"
@@ -40,14 +40,34 @@ flat = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-custom_constants/separation = 10
-alignment = 1
 
-[node name="Avatar" type="TextureButton" parent="ColorRect/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/HBoxContainer"]
+margin_right = 10.0
+margin_bottom = 100.0
+custom_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/HBoxContainer"]
+margin_left = 14.0
+margin_right = 54.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 40, 40 )
+mouse_filter = 2
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/HBoxContainer"]
+margin_left = 224.0
+margin_right = 499.0
+margin_bottom = 100.0
+mouse_filter = 2
+size_flags_horizontal = 6
+custom_constants/separation = 10
+
+[node name="Avatar" type="TextureButton" parent="ColorRect/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-margin_left = 222.0
 margin_top = 10.0
-margin_right = 302.0
+margin_right = 80.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 80, 80 )
 mouse_filter = 2
@@ -55,27 +75,34 @@ size_flags_vertical = 6
 texture_normal = ExtResource( 1 )
 expand = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/HBoxContainer"]
-margin_left = 312.0
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/HBoxContainer/HBoxContainer"]
+margin_left = 90.0
 margin_top = 16.0
-margin_right = 497.0
+margin_right = 275.0
 margin_bottom = 83.0
 mouse_filter = 2
+size_flags_horizontal = 2
 size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="ColorRect/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="ColorRect/HBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 margin_right = 185.0
 margin_bottom = 35.0
 custom_fonts/font = SubResource( 2 )
 text = "Имя беседы"
 
-[node name="Count" type="Label" parent="ColorRect/HBoxContainer/VBoxContainer"]
+[node name="Count" type="Label" parent="ColorRect/HBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 39.0
 margin_right = 185.0
 margin_bottom = 67.0
 custom_fonts/font = SubResource( 3 )
 text = "3 участника"
+
+[node name="MarginContainer2" type="MarginContainer" parent="ColorRect/HBoxContainer"]
+margin_left = 670.0
+margin_right = 720.0
+margin_bottom = 100.0
+custom_constants/margin_left = 50
 
 [connection signal="pressed" from="ColorRect/Button" to="." method="_on_Button_pressed"]
