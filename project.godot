@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "MarginContainer",
 "class": "Message",
 "language": "GDScript",
-"path": "res://message.gd"
+"path": "res://message/message.gd"
 } ]
 _global_script_class_icons={
 "Message": ""
@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="The Chat Game"
-run/main_scene="res://chat.tscn"
+run/main_scene="res://main.tscn"
 config/icon="res://avatars/default_avatar.png"
 
 [autoload]

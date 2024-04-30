@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://chat/chat_container.tscn" type="PackedScene" id=1]
+[ext_resource path="res://chat/chat_header.tscn" type="PackedScene" id=3]
+[ext_resource path="res://chat/chat.gd" type="Script" id=4]
+[ext_resource path="res://chat/side_panel.tscn" type="PackedScene" id=5]
+
+[node name="Chat" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+
+[node name="ColorBackground" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.15, 0.15, 0.15, 1 )
+
+[node name="ChatContainer" parent="." instance=ExtResource( 1 )]
+anchor_top = 0.078
+margin_left = 9.0
+margin_top = 0.159996
+chat_text_file = "res://scripts/main_chat_ru.txt"
+
+[node name="ChatHeader" parent="." instance=ExtResource( 3 )]
+chat_name = "Игра на выбывание"
+
+[node name="FadeRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0 )
+
+[node name="SidePanel" parent="." instance=ExtResource( 5 )]
+margin_left = -430.0
+margin_right = -720.0
+
+[connection signal="header_pressed" from="ChatHeader" to="." method="_on_ChatHeader_header_pressed"]
+[connection signal="chat_pressed" from="SidePanel" to="." method="_on_SidePanel_chat_pressed"]
+[connection signal="side_panel_dragged" from="SidePanel" to="." method="_on_SidePanel_side_panel_dragged"]
