@@ -19,7 +19,7 @@ func _ready():
 
 # Прокрутить список сообщений на pos-пикселей
 func scroll_messages(pos: float) -> void:
-	scroll_vertical -= int(floor(pos)) 
+	scroll_vertical -= int(round(pos)) 
 
 
 # Загрузить чат из текстового файла, расположенного по пути chat_text_file

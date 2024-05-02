@@ -48,6 +48,10 @@ theme/custom_font="res://fonts/arial.tres"
 
 pointing/emulate_touch_from_mouse=true
 
+[locale]
+
+locale_filter=[ 0, [  ] ]
+
 [physics]
 
 common/enable_pause_aware_picking=true
