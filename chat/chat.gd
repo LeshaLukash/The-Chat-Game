@@ -14,9 +14,7 @@ func _input(event):
 	
 	# Если пользователь начал проводить пальцем по экрану
 	if event is InputEventScreenDrag:
-		
-		$ChatContainer.inert_scroll_messages(0) # останавливаем прокрутку экрана по инерции
-		# Сперва пользователь должен провести пальцем вектор опред. длины	
+		# Сперва пользователь должен провести пальцем вектор опред. длины
 		if drag_vec.length() < DRAG_LENGTH:
 			drag_vec += event.relative
 			
@@ -26,14 +24,7 @@ func _input(event):
 			$SidePanel.set_panel_pos(event.relative.x)
 		# Если в длину - скроллим сообщения
 		else:
-			scroll_speed = event.relative.y
-			drag_speed = event.speed.y
 			$ChatContainer.scroll_messages(event.relative.y)
-	
-	# Если игрок ткнул в экран но не провёл пальцем 
-	# то останавливаем прокрутку экрана по инерции
-	elif event is InputEventScreenTouch and event.pressed:
-		$ChatContainer.inert_scroll_messages(0)
 	
 	# Если пользователь отпустил палец
 	elif event is InputEventScreenTouch and not event.pressed:
@@ -43,11 +34,8 @@ func _input(event):
 			if is_drag_horizontal():
 				$SidePanel.animate_panel(is_side_panel_visible())
 			# Если да, и вектор вертикальный - скроллим сообщения по инерции
-			else:
-				$ChatContainer.inert_scroll_messages(scroll_speed)
 		
 		drag_vec = Vector2.ZERO
-		scroll_speed = 0.0
 
 
 func is_drag_horizontal() -> bool:

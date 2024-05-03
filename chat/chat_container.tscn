@@ -13,7 +13,46 @@ __meta__ = {
 }
 
 [node name="MessagesContainer" type="VBoxContainer" parent="."]
-margin_right = 720.0
+margin_right = 708.0
+margin_bottom = 5656.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 3
+
+[connection signal="item_rect_changed" from="MessagesContainer/Message" to="MessagesContainer/Message" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message2" to="MessagesContainer/Message2" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message3" to="MessagesContainer/Message3" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message4" to="MessagesContainer/Message4" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message5" to="MessagesContainer/Message5" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message6" to="MessagesContainer/Message6" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message7" to="MessagesContainer/Message7" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message8" to="MessagesContainer/Message8" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message9" to="MessagesContainer/Message9" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message10" to="MessagesContainer/Message10" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message11" to="MessagesContainer/Message11" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message12" to="MessagesContainer/Message12" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message13" to="MessagesContainer/Message13" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message14" to="MessagesContainer/Message14" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message15" to="MessagesContainer/Message15" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message16" to="MessagesContainer/Message16" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message17" to="MessagesContainer/Message17" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message18" to="MessagesContainer/Message18" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message19" to="MessagesContainer/Message19" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message20" to="MessagesContainer/Message20" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message21" to="MessagesContainer/Message21" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message22" to="MessagesContainer/Message22" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message23" to="MessagesContainer/Message23" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message24" to="MessagesContainer/Message24" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message25" to="MessagesContainer/Message25" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message26" to="MessagesContainer/Message26" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message27" to="MessagesContainer/Message27" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message28" to="MessagesContainer/Message28" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message29" to="MessagesContainer/Message29" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message30" to="MessagesContainer/Message30" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message31" to="MessagesContainer/Message31" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message32" to="MessagesContainer/Message32" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message33" to="MessagesContainer/Message33" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message34" to="MessagesContainer/Message34" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message35" to="MessagesContainer/Message35" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message36" to="MessagesContainer/Message36" method="_on_Message_item_rect_changed"]
+[connection signal="item_rect_changed" from="MessagesContainer/Message37" to="MessagesContainer/Message37" method="_on_Message_item_rect_changed"]
