@@ -5,6 +5,7 @@ extends ScrollContainer
 
 const GROUP_MESSAGES_NAME := "messages"
 const PARAMS_COUNT := 4
+const INERT_SPEED_DECREASE := 0.51
 
 export (String, FILE, "*.txt") var chat_text_file = "res://scripts/chat_example.txt"
 
@@ -15,6 +16,26 @@ onready var info_label_scene := preload("res://message/info_label.tscn")
 func _ready():
 	load_chat(chat_text_file)
 	get_v_scrollbar().self_modulate = Color(1, 1, 1, 0.5)
+	set_process(false)
+
+
+# Отвечает за прокрутку по инерции
+func _process(_delta):
+	if not is_zero_approx(scroll_speed):
+		scroll_messages(scroll_speed)
+		scroll_speed = (abs(scroll_speed) - INERT_SPEED_DECREASE) * sign(scroll_speed)	# Уменьшаем скорость
+		
+		if abs(scroll_speed) < INERT_SPEED_DECREASE:
+			scroll_speed = round(scroll_speed)
+	else:
+		set_process(false)
+
+
+var scroll_speed := 0.0
+func inert_scroll_messages(v: float) -> void:
+	print("init scroll_speed: " + str(v))
+	scroll_speed = v
+	set_process(true)
 
 
 # Прокрутить список сообщений на pos-пикселей

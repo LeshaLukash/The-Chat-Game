@@ -1,23 +1,57 @@
 extends Control
 
 # Окно чата
-const FADE_MAX := 150 				# Макс. затенение экрана сообщений
-const DRAG_LENGTH := 3				# Макс. длина свайпа, после чего проверяется его назначение
-const INERTIA_SCROLL_SPEED := 0.5	# Скорость прокрутки сообщений после того, как игрок отпустил палец
-const INERTIA_HIDDEN_SCROLL_SPEED := 3
-
-var is_drag_started := false		# Флаг, начал ли игрок протягивать пальцем по экрану
-var scroll_speed := 0.0				# Скорость прокрутки сообщений
-var can_inert_scroll: bool
-
-
-func _process(_delta):
-	pass
+const FADE_MAX := 150 			# Макс. затенение экрана сообщений
+const DRAG_LENGTH := 10			# Макс. длина свайпа, после чего проверяется его назначение
 
 
 # Отслеживаем свайпы по экрану
+var drag_vec := Vector2.ZERO
+var scroll_speed := 0.0			# Скорость прокрутки сообщений
+var drag_speed := 0.0			# Скорость протягивания пальцем по экрану
+
 func _input(event):
-	pass
+	
+	# Если пользователь начал проводить пальцем по экрану
+	if event is InputEventScreenDrag:
+		
+		$ChatContainer.inert_scroll_messages(0) # останавливаем прокрутку экрана по инерции
+		# Сперва пользователь должен провести пальцем вектор опред. длины	
+		if drag_vec.length() < DRAG_LENGTH:
+			drag_vec += event.relative
+			
+		# Проверяем, вектор вытянут в длину или в ширину
+		# Если в ширину - отодвигаем боковую панель
+		elif is_drag_horizontal():
+			$SidePanel.set_panel_pos(event.relative.x)
+		# Если в длину - скроллим сообщения
+		else:
+			scroll_speed = event.relative.y
+			drag_speed = event.speed.y
+			$ChatContainer.scroll_messages(event.relative.y)
+	
+	# Если игрок ткнул в экран но не провёл пальцем 
+	# то останавливаем прокрутку экрана по инерции
+	elif event is InputEventScreenTouch and event.pressed:
+		$ChatContainer.inert_scroll_messages(0)
+	
+	# Если пользователь отпустил палец
+	elif event is InputEventScreenTouch and not event.pressed:
+		# Перед тем, как отпустить палец, пользователь нарисовал вектор нужной длины
+		if drag_vec.length() >= DRAG_LENGTH:
+			# Если да, и вектор горизонтальный - анимируем боковую панель
+			if is_drag_horizontal():
+				$SidePanel.animate_panel(is_side_panel_visible())
+			# Если да, и вектор вертикальный - скроллим сообщения по инерции
+			else:
+				$ChatContainer.inert_scroll_messages(scroll_speed)
+		
+		drag_vec = Vector2.ZERO
+		scroll_speed = 0.0
+
+
+func is_drag_horizontal() -> bool:
+	return abs(drag_vec.x) > abs(drag_vec.y)
 
 
 # Проверка, видна ли боковая панель
@@ -30,10 +64,10 @@ func fade_messages(weight: float) -> void:
 	$FadeRect.color.a8 = lerp(0, FADE_MAX, weight)
 	
 	# Если сообщения хотя бы немного затенены - не давать их нажимать
-	if $FadeRect.color.a8 == 0:
-		$FadeRect.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	else:
+	if $FadeRect.color.a8 != 0:
 		$FadeRect.mouse_filter = Control.MOUSE_FILTER_STOP
+	else:
+		$FadeRect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 
 func _on_SidePanel_side_panel_dragged(weight: float):

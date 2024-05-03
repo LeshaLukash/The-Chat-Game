@@ -14,7 +14,6 @@ var avatars_db: Dictionary
 func _ready():
 	avatars_db = load_avatars_list()
 	init_avatars_textures()
-	print(avatars_db.keys())
 
 
 # Загрузка файла с текстурами аватарок
