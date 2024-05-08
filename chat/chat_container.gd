@@ -16,7 +16,6 @@ onready var info_label_scene := preload("res://message/info_label.tscn")
 func _ready():
 	load_chat(chat_text_file)
 	get_v_scrollbar().self_modulate = Color(1, 1, 1, 0.5)
-	set_process(false)
 
 
 # Прокрутить список сообщений на pos-пикселей

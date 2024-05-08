@@ -7,39 +7,42 @@ const DRAG_LENGTH := 10			# Макс. длина свайпа, после чег
 
 # Отслеживаем свайпы по экрану
 var drag_vec := Vector2.ZERO
-var scroll_speed := 0.0			# Скорость прокрутки сообщений
-var drag_speed := 0.0			# Скорость протягивания пальцем по экрану
 
 func _input(event):
 	
 	# Если пользователь начал проводить пальцем по экрану
 	if event is InputEventScreenDrag:
+		printt(event.relative, event.speed)
 		# Сперва пользователь должен провести пальцем вектор опред. длины
-		if drag_vec.length() < DRAG_LENGTH:
+		if not is_drag_action_decided():
 			drag_vec += event.relative
 			
 		# Проверяем, вектор вытянут в длину или в ширину
 		# Если в ширину - отодвигаем боковую панель
 		elif is_drag_horizontal():
 			$SidePanel.set_panel_pos(event.relative.x)
+			
 		# Если в длину - скроллим сообщения
-		else:
+		elif not is_side_panel_visible():
 			$ChatContainer.scroll_messages(event.relative.y)
-	
+		
 	# Если пользователь отпустил палец
 	elif event is InputEventScreenTouch and not event.pressed:
+		
 		# Перед тем, как отпустить палец, пользователь нарисовал вектор нужной длины
-		if drag_vec.length() >= DRAG_LENGTH:
+		if is_drag_action_decided():
 			# Если да, и вектор горизонтальный - анимируем боковую панель
 			if is_drag_horizontal():
 				$SidePanel.animate_panel(is_side_panel_visible())
-			# Если да, и вектор вертикальный - скроллим сообщения по инерции
-		
 		drag_vec = Vector2.ZERO
 
 
 func is_drag_horizontal() -> bool:
 	return abs(drag_vec.x) > abs(drag_vec.y)
+
+
+func is_drag_action_decided() -> bool:
+	return drag_vec.length() >= DRAG_LENGTH
 
 
 # Проверка, видна ли боковая панель
