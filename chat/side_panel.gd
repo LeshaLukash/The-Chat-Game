@@ -10,6 +10,12 @@ onready var panel_pos_hided := rect_position.x
 onready var panel_pos_showed := 0.0
 
 
+func _ready():
+	# Если игра запущена в браузере - скрываем кнопку закрытия чата
+	if OS.get_name() == "HTML5":
+		get_node("%ExitButton").hide()
+
+
 # Задать положение панели
 func set_panel_pos(x: float) -> void:
 	rect_position.x += x

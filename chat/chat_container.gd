@@ -3,9 +3,9 @@ extends ScrollContainer
 # ОКНО ЧАТА
 # Это вертикальный список с прокруткой всех добавленых сообщений
 
-const GROUP_MESSAGES_NAME := "messages"
-const PARAMS_COUNT := 4
-const INERT_SPEED_DECREASE := 10
+const GROUP_MESSAGES_NAME := "messages"	# Имя группы, содержащей все сообщения
+const PARAMS_COUNT := 4					# Кол-во параметров у загружаемых сообщений
+const INERT_SPEED_DECREASE := 50		# Скорость замедления прокрутки по инерции
 
 export (String, FILE, "*.txt") var chat_text_file = "res://scripts/chat_example.txt"
 
@@ -14,8 +14,46 @@ onready var info_label_scene := preload("res://message/info_label.tscn")
 
 
 func _ready():
-	load_chat(chat_text_file)
-	get_v_scrollbar().self_modulate = Color(1, 1, 1, 0.5)
+	load_chat(chat_text_file) # загружаем чат
+	get_v_scrollbar().self_modulate = Color(1, 1, 1, 0.5) # делаем вертикальый ползунок прозрачнее
+	set_process(false) # не даём старотвать _ready
+
+
+# Алгоритм работы инертой прокрутки
+# Мы получаем скорость прокрутки, и уменьшаем её на 0.5
+# Баг: возможна зависимость от скорости работы процессора!
+func _process(delta):
+	printt(inert_scroll_speed, scroll_vertical)
+	if is_zero_approx(inert_scroll_speed):
+		inert_scroll_speed = 0
+		inert_scroll_dir = 0
+		set_process(false)
+	
+	if scroll_vertical < get_chat_length() and scroll_vertical > 0:
+		scroll_messages(inert_scroll_speed * delta)
+		inert_scroll_speed -= INERT_SPEED_DECREASE * sign(inert_scroll_speed)
+		if inert_scroll_dir < 0:
+			inert_scroll_speed = clamp(inert_scroll_speed, inert_scroll_speed, 0)
+		else:
+			inert_scroll_speed = clamp(inert_scroll_speed, 0, inert_scroll_speed)
+	else:
+		inert_scroll_speed = 0
+
+
+# Получить длину чата
+# ВАЖНО: Не работает при вызове из _ready
+# т.к. вертикальный ползунок медленно настраивается движком
+func get_chat_length() -> float:
+	return get_v_scrollbar().max_value - rect_size.y
+
+
+# Активация инертного пролистывания сообщеий 
+var inert_scroll_speed := 0.0
+var inert_scroll_dir := 0.0
+func inert_scroll_messages(i: float) -> void:
+	inert_scroll_speed = round(i)
+	inert_scroll_dir = sign(i)
+	set_process(true)
 
 
 # Прокрутить список сообщений на pos-пикселей

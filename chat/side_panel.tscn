@@ -3,7 +3,6 @@
 [ext_resource path="res://chat/side_panel.gd" type="Script" id=1]
 [ext_resource path="res://avatars/default_avatar.png" type="Texture" id=2]
 
-
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://fonts/arialbd.ttf"
 
