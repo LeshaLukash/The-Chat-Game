@@ -1,6 +1,13 @@
 extends Control
+# Главная сцена
 
 const SAVE_PATH := "user://save_data.dat"
+
+
+func _ready():
+	add_crime_date()
+	$Chat/ChatContainer.load_chat()
+
 
 # Добавить в чат плашку с датой преступления
 func add_crime_date() -> void:
@@ -20,6 +27,7 @@ func add_crime_date() -> void:
 	$Chat/ChatContainer.add_info_panel(crime_date)
 
 
+# Проверка, впервые ли запускается игра
 func is_first_launch() -> bool:
 	var f = File.new()
 	return not f.file_exists(SAVE_PATH)
