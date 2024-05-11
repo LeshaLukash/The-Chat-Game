@@ -8,27 +8,6 @@ const TIME_PRESS_SCREEN_STOP_INERTIA := 0.05
 
 # Отслеживаем свайпы по экрану
 var drag_vec := Vector2.ZERO
-var scroll_speed := 0.0
-var screen_just_started := false
-var delta_passed := 0.0
-
-func _process(delta):
-	# Если игрок только нажал на экран - начать отсчёт
-	if screen_just_started:
-		delta_passed += delta
-	# Игрок отпустил палец - отсчёт остановился
-	else:
-		delta_passed = 0.0
-		set_process(false)
-	
-	# Если прошло некоторое время с начала удержания пальца игроком
-	# и тот его не отпустил
-	# то обновить и остановить счётчик, и сбросить пролистывание по инерции
-	if delta_passed >= TIME_PRESS_SCREEN_STOP_INERTIA:
-		delta_passed = 0
-		$ChatContainer.inert_scroll_speed = 0.0
-		set_process(false)
-
 
 func _input(event):
 	# Если пользователь начал проводить пальцем по экрану
@@ -47,21 +26,19 @@ func _input(event):
 			$ChatContainer.scroll_messages(event.relative.y)
 
 	elif event is InputEventScreenTouch:
-		# Пользователь нажал на экран - инициируем прерывание пролистывания по инерции
+		# TODO: Пользователь нажал на экран - инициируем прерывание пролистывания по инерции
 		if event.pressed:
-			screen_just_started = true
-			set_process(true)
-			
+			pass
 		# Если пользователь отпустил палец
 		else:
-			screen_just_started = false
 			# Перед тем, как отпустить палец, пользователь нарисовал вектор нужной длины
 			if is_drag_action_decided():
 				# Если да, и вектор горизонтальный - анимируем боковую панель
 				if is_drag_horizontal():
 					$SidePanel.animate_panel(is_side_panel_visible())
+				# TODO: Если да, и вектор вертикальный - запускаем прокрутку по инерции
 				elif not is_side_panel_visible():
-					$ChatContainer.inert_scroll_messages(scroll_speed)
+					pass
 			drag_vec = Vector2.ZERO
 
 

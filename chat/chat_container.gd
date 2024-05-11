@@ -20,42 +20,11 @@ func _ready():
 	set_process(false) # не даём старотвать _ready
 
 
-# Алгоритм работы инертой прокрутки
-# Мы получаем скорость прокрутки, и уменьшаем её на INERT_SPEED_DECREASE
-# Баг: возможна зависимость от скорости работы процессора!
-func _process(delta):
-	if is_zero_approx(inert_scroll_speed):
-		inert_scroll_speed = 0
-		inert_scroll_dir = 0
-		set_process(false)
-		
-	elif scroll_vertical < get_chat_length() and scroll_vertical > 0:
-		inert_scroll_speed -= INERT_SPEED_DECREASE * sign(inert_scroll_speed)
-		scroll_messages(inert_scroll_speed * delta)
-		
-		if inert_scroll_dir < 0:
-			inert_scroll_speed = clamp(inert_scroll_speed, inert_scroll_speed, 0)
-		else:
-			inert_scroll_speed = clamp(inert_scroll_speed, 0, inert_scroll_speed)
-	else:
-		inert_scroll_speed = 0
-
-
 # Получить длину чата
 # ВАЖНО: Не работает при вызове из _ready
 # т.к. вертикальный ползунок медленно настраивается движком
 func get_chat_length() -> float:
 	return get_v_scrollbar().max_value - rect_size.y
-
-
-# Активация инертного пролистывания сообщеий 
-var inert_scroll_speed := 0.0	# Скорость прокрутки по инерции (а.к.а.
-								# скорость проведения пальцем по экрану)
-var inert_scroll_dir := 0.0		# Направление прокрутки по инерции
-func inert_scroll_messages(i: float) -> void:
-	inert_scroll_speed = round(i)
-	inert_scroll_dir = sign(i)
-	set_process(true)
 
 
 # Прокрутить список сообщений на pos-пикселей
