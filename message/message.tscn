@@ -9,6 +9,7 @@
 margin_right = 265.0
 margin_bottom = 132.0
 rect_pivot_offset = Vector2( -513, -236 )
+mouse_filter = 1
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
@@ -27,6 +28,7 @@ margin_top = 72.0
 margin_right = 60.0
 margin_bottom = 132.0
 rect_min_size = Vector2( 60, 60 )
+mouse_filter = 1
 size_flags_vertical = 8
 texture_normal = ExtResource( 4 )
 expand = true
@@ -36,6 +38,7 @@ unique_name_in_owner = true
 margin_left = 64.0
 margin_right = 265.0
 margin_bottom = 132.0
+mouse_filter = 1
 size_flags_vertical = 0
 theme = ExtResource( 1 )
 
@@ -47,6 +50,7 @@ margin_right = 186.0
 margin_bottom = 117.0
 rect_min_size = Vector2( 171, 0 )
 rect_clip_content = false
+mouse_filter = 1
 bbcode_enabled = true
 bbcode_text = "[color=#4977C6][font=fonts/arial_sender_name.tres]Отправитель[/font][/color]
 [font=fonts/message_text_font.tres][/font]

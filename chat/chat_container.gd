@@ -27,11 +27,6 @@ func get_chat_length() -> float:
 	return get_v_scrollbar().max_value - rect_size.y
 
 
-# Прокрутить список сообщений на pos-пикселей
-func scroll_messages(pos: float) -> void:
-	scroll_vertical -= int(round(pos)) 
-
-
 # Загрузить чат из текстового файла, расположенного по пути chat_text_file
 func load_chat(file_path: String = chat_text_file) -> void:
 	clear_chat()

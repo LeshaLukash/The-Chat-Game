@@ -1,0 +1,64 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Control
+
+signal faded
+
+func _ready():
+	set_process_input(false)
+
+
+func _input(event):
+	if event is InputEventScreenTouch or event is InputEventMouseButton:
+		$Tween.interpolate_property(self, \"modulate:a\", 1.0, 0.0, 1.0)
+		$Tween.start()
+		set_process_input(false)
+
+
+func _on_Tween_tween_completed(_object, _key):
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	emit_signal(\"faded\")
+"
+
+[node name="Intro" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+
+[node name="Label" type="RichTextLabel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -264.0
+margin_top = -214.5
+margin_right = 264.0
+margin_bottom = 214.5
+mouse_filter = 2
+bbcode_enabled = true
+bbcode_text = "[center]Вчера было совершено убийство.
+В ходе осмотра места преступления был обнаружен смартфон жертвы.
+На смартфоне обнаружился групповой чат, участие жертвы в котором, вероятно, и повлекло за собой преступление
+
+[u]Ваша задача: изучить этот групповой чат, выяснить как можно больше информации об его участниках.[/u]
+
+И установить личность убийцы.[/center]"
+text = "Вчера было совершено убийство.
+В ходе осмотра места преступления был обнаружен смартфон жертвы.
+На смартфоне обнаружился групповой чат, участие жертвы в котором, вероятно, и повлекло за собой преступление
+
+Ваша задача: изучить этот групповой чат, выяснить как можно больше информации об его участниках.
+
+И установить личность убийцы."
+fit_content_height = true
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

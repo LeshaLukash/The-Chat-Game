@@ -5,6 +5,8 @@ signal chat_pressed
 signal option_pressed
 signal about_pressed
 signal side_panel_dragged(weight)
+signal hided
+signal showed
 
 onready var panel_pos_hided := rect_position.x
 onready var panel_pos_showed := 0.0
@@ -37,7 +39,17 @@ func animate_panel(show_panel: bool) -> void:
 		result_panel_pos = panel_pos_hided
 	
 	# warning-ignore:return_value_discarded
+	tween.connect("finished", self, "_on_tween_finished", [result_panel_pos])
+	# warning-ignore:return_value_discarded
 	tween.tween_property(self, "rect_position:x", result_panel_pos, 0.2)
+
+
+func _on_tween_finished(result: float):
+	match result:
+		panel_pos_showed:
+			emit_signal("showed")
+		panel_pos_hided:
+			emit_signal("hided")
 
 
 func _on_ChatButton_pressed():

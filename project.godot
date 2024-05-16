@@ -20,8 +20,10 @@ _global_script_class_icons={
 
 [application]
 
-config/name="The Chat Game"
+config/name="The Elimination Game"
 run/main_scene="res://main.tscn"
+boot_splash/show_image=false
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://avatars/default_avatar.png"
 
 [autoload]
@@ -47,7 +49,7 @@ theme/custom_font="res://fonts/arial.tres"
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
-pointing/emulate_touch_from_mouse.HTML5.Windows=false
+pointing/emulate_touch_from_mouse.Android=true
 
 [locale]
 

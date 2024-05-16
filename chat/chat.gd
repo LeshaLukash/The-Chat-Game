@@ -2,8 +2,7 @@ extends Control
 
 # Окно чата
 const FADE_MAX := 150 			# Макс. затенение экрана сообщений
-const DRAG_LENGTH := 15			# Макс. длина свайпа, после чего проверяется его назначение
-const TIME_PRESS_SCREEN_STOP_INERTIA := 0.05
+const DRAG_LENGTH := 10			# Макс. длина свайпа, после чего проверяется его назначение
 
 
 # Отслеживаем свайпы по экрану
@@ -20,26 +19,15 @@ func _input(event):
 		# Если в ширину - отодвигаем боковую панель
 		elif is_drag_horizontal():
 			$SidePanel.set_panel_pos(event.relative.x)
-			
-		# Если в длину - скроллим сообщения
-		elif not is_side_panel_visible():
-			$ChatContainer.scroll_messages(event.relative.y)
 
-	elif event is InputEventScreenTouch:
-		# TODO: Пользователь нажал на экран - инициируем прерывание пролистывания по инерции
-		if event.pressed:
-			pass
+	elif event is InputEventScreenTouch and not event.pressed:
 		# Если пользователь отпустил палец
-		else:
-			# Перед тем, как отпустить палец, пользователь нарисовал вектор нужной длины
-			if is_drag_action_decided():
-				# Если да, и вектор горизонтальный - анимируем боковую панель
-				if is_drag_horizontal():
-					$SidePanel.animate_panel(is_side_panel_visible())
-				# TODO: Если да, и вектор вертикальный - запускаем прокрутку по инерции
-				elif not is_side_panel_visible():
-					pass
-			drag_vec = Vector2.ZERO
+		# Перед тем, как отпустить палец, пользователь нарисовал вектор нужной длины
+		if is_drag_action_decided():
+			# Если да, и вектор горизонтальный - анимируем боковую панель
+			if is_drag_horizontal():
+				$SidePanel.animate_panel(is_side_panel_visible())
+		drag_vec = Vector2.ZERO
 
 
 func is_drag_horizontal() -> bool:
@@ -61,12 +49,18 @@ func fade_messages(weight: float) -> void:
 	
 	# Если сообщения хотя бы немного затенены - не давать их нажимать
 	if $FadeRect.color.a8 != 0:
-		$FadeRect.mouse_filter = Control.MOUSE_FILTER_STOP
+		$FadeRect.mouse_filter = MOUSE_FILTER_STOP
 	else:
-		$FadeRect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		$FadeRect.mouse_filter = MOUSE_FILTER_IGNORE
 
 
 func _on_SidePanel_side_panel_dragged(weight: float):
+
+	if is_zero_approx(weight):
+		$ChatContainer.mouse_filter = Control.MOUSE_FILTER_STOP
+	else:
+		$ChatContainer.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	
 	fade_messages(weight)
 
 

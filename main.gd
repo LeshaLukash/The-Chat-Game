@@ -4,9 +4,29 @@ extends Control
 const SAVE_PATH := "user://save_data.dat"
 
 
+# Попытка активировать сенсорное управление
+# при старте игры в браузере смартфона
+func _init():
+	if is_web_mobile():
+		ProjectSettings.set_setting("input_devices/pointing/emulate_touch_from_mouse", true)
+
+
 func _ready():
+	# При первом запуске показыаем интро
+	if is_first_launch():
+		$Chat.set_process_input(false)
+		$Intro.show()
+		$Intro.set_process_input(true)
+	else:
+		$Chat.set_process_input(true)
+	
 	add_crime_date()
 	$Chat/ChatContainer.load_chat()
+
+
+# Код для проверки запуска игры из браузера смартфона
+func is_web_mobile() -> bool:
+	return JavaScript.eval("/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigation.userAgent)", true)
 
 
 # Добавить в чат плашку с датой преступления
@@ -31,3 +51,7 @@ func add_crime_date() -> void:
 func is_first_launch() -> bool:
 	var f = File.new()
 	return not f.file_exists(SAVE_PATH)
+
+
+func _on_Intro_faded():
+	$Chat.set_process_input(true)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://theme.tres" type="Theme" id=1]
 [ext_resource path="res://chat/chat.tscn" type="PackedScene" id=2]
 [ext_resource path="res://main.gd" type="Script" id=3]
+[ext_resource path="res://intro.tscn" type="PackedScene" id=4]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -11,5 +12,10 @@ theme = ExtResource( 1 )
 script = ExtResource( 3 )
 
 [node name="Chat" parent="." instance=ExtResource( 2 )]
+
+[node name="Intro" parent="." instance=ExtResource( 4 )]
+visible = false
+
+[connection signal="faded" from="Intro" to="." method="_on_Intro_faded"]
 
 [editable path="Chat"]

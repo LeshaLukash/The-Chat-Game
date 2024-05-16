@@ -1,0 +1,118 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+resource_name = "report"
+script/source = "extends Control
+
+var correct_answers := {
+	\"chat_name\" = \"игра на выбывание\",
+	\"total_players\" = 5,
+	
+}
+"
+
+[node name="Report" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 34.0
+margin_top = 34.0
+margin_right = -55.0
+
+[node name="Question1" type="Label" parent="VBoxContainer"]
+margin_right = 631.0
+margin_bottom = 32.0
+text = "1. Как называется беседа игры?"
+
+[node name="Answer1" type="LineEdit" parent="VBoxContainer"]
+margin_top = 36.0
+margin_right = 631.0
+margin_bottom = 78.0
+align = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 82.0
+margin_right = 631.0
+margin_bottom = 110.0
+custom_constants/margin_bottom = 28
+
+[node name="Question2" type="Label" parent="VBoxContainer"]
+margin_top = 114.0
+margin_right = 631.0
+margin_bottom = 181.0
+text = "2. Сколько в ней состояло участников на момент начала игры?"
+autowrap = true
+
+[node name="Answer2" type="LineEdit" parent="VBoxContainer"]
+margin_top = 185.0
+margin_right = 631.0
+margin_bottom = 227.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 231.0
+margin_right = 631.0
+margin_bottom = 259.0
+custom_constants/margin_bottom = 28
+
+[node name="Question3" type="Label" parent="VBoxContainer"]
+margin_top = 263.0
+margin_right = 631.0
+margin_bottom = 295.0
+text = "3. Укажите никнеймы участников игры"
+autowrap = true
+
+[node name="Answer3" type="LineEdit" parent="VBoxContainer"]
+margin_top = 299.0
+margin_right = 631.0
+margin_bottom = 341.0
+
+[node name="Question4" type="Label" parent="VBoxContainer"]
+margin_top = 345.0
+margin_right = 631.0
+margin_bottom = 412.0
+text = "4. Сопоставьте каждому никнейму настоящее имя игрока"
+autowrap = true
+
+[node name="Answer4" type="LineEdit" parent="VBoxContainer"]
+margin_top = 416.0
+margin_right = 631.0
+margin_bottom = 458.0
+
+[node name="Question5" type="Label" parent="VBoxContainer"]
+margin_top = 462.0
+margin_right = 631.0
+margin_bottom = 529.0
+text = "5. Сопоставьте каждому игроку его адрес проживания"
+autowrap = true
+
+[node name="Answer5" type="LineEdit" parent="VBoxContainer"]
+margin_top = 533.0
+margin_right = 631.0
+margin_bottom = 575.0
+
+[node name="Question6" type="Label" parent="VBoxContainer"]
+margin_top = 579.0
+margin_right = 631.0
+margin_bottom = 646.0
+text = "6. Кто добрался первым до игрока под никнеймом saxxxy13?"
+autowrap = true
+
+[node name="Answer6" type="LineEdit" parent="VBoxContainer"]
+margin_top = 650.0
+margin_right = 631.0
+margin_bottom = 692.0
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+margin_top = 696.0
+margin_right = 631.0
+margin_bottom = 734.0
+text = "Завершить отчёт"
