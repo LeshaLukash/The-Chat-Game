@@ -3,7 +3,7 @@ extends Control
 
 signal chat_pressed
 signal option_pressed
-signal about_pressed
+signal report_pressed
 signal side_panel_dragged(weight)
 signal hided
 signal showed
@@ -60,8 +60,8 @@ func _on_OptionsButton_pressed():
 	emit_signal("option_pressed")
 
 
-func _on_AboutButton_pressed():
-	emit_signal("about_pressed")
+func _on_ReportButton_pressed():
+	emit_signal("report_pressed")
 
 
 func _on_SidePanel_item_rect_changed():

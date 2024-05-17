@@ -111,5 +111,5 @@ size_flags_stretch_ratio = 0.13
 [connection signal="item_rect_changed" from="." to="." method="_on_SidePanel_item_rect_changed"]
 [connection signal="pressed" from="ColorRect/VBoxContainer/ChatButton" to="." method="_on_ChatButton_pressed"]
 [connection signal="pressed" from="ColorRect/VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
-[connection signal="pressed" from="ColorRect/VBoxContainer/ReportButton" to="." method="_on_AboutButton_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/ReportButton" to="." method="_on_ReportButton_pressed"]
 [connection signal="pressed" from="ColorRect/VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]

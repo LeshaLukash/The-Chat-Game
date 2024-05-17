@@ -36,4 +36,5 @@ margin_right = -720.0
 
 [connection signal="header_pressed" from="ChatHeader" to="." method="_on_ChatHeader_header_pressed"]
 [connection signal="chat_pressed" from="SidePanel" to="." method="_on_SidePanel_chat_pressed"]
+[connection signal="report_pressed" from="SidePanel" to="." method="_on_SidePanel_report_pressed"]
 [connection signal="side_panel_dragged" from="SidePanel" to="." method="_on_SidePanel_side_panel_dragged"]

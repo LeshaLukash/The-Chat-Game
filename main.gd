@@ -12,13 +12,13 @@ func _init():
 
 
 func _ready():
-	# При первом запуске показыаем интро
-	if is_first_launch():
-		$Chat.set_process_input(false)
-		$Intro.show()
-		$Intro.set_process_input(true)
-	else:
-		$Chat.set_process_input(true)
+	$Intro.is_first_start = is_first_launch()
+	if not is_first_launch():
+		$Intro/StartButton.text = "Продолжить"
+	$Intro.show()
+	
+	$Chat.set_process_input(false)
+	$Intro.set_process_input(true)
 	
 	add_crime_date()
 	$Chat/ChatContainer.load_chat()
@@ -55,3 +55,12 @@ func is_first_launch() -> bool:
 
 func _on_Intro_faded():
 	$Chat.set_process_input(true)
+
+
+func _on_Chat_report_pressed():
+	$Chat.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	$Report.show()
+
+
+func _on_Report_back_pressed():
+	$Chat.mouse_filter = Control.MOUSE_FILTER_STOP

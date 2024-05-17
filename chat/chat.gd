@@ -5,6 +5,9 @@ const FADE_MAX := 150 			# Макс. затенение экрана сообщ�
 const DRAG_LENGTH := 10			# Макс. длина свайпа, после чего проверяется его назначение
 
 
+signal report_pressed
+
+
 # Отслеживаем свайпы по экрану
 var drag_vec := Vector2.ZERO
 
@@ -70,3 +73,7 @@ func _on_ChatHeader_header_pressed():
 
 func _on_SidePanel_chat_pressed():
 	$SidePanel.animate_panel(not is_side_panel_visible())
+
+
+func _on_SidePanel_report_pressed():
+	emit_signal("report_pressed")

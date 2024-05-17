@@ -4,11 +4,25 @@
 resource_name = "report"
 script/source = "extends Control
 
+signal back_pressed
+
 var correct_answers := {
-	\"chat_name\" = \"игра на выбывание\",
-	\"total_players\" = 5,
-	
+	chat_name = \"игра на выбывание\",
+	total_players = 5,
+	all_players_nicknames = [],
+	victim_nickname = \"saxxxy13\",
+	killer_nickname = \"\"
 }
+
+func _notification(what):
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		hide()
+		emit_signal(\"back_pressed\")
+
+
+func _input(_event):
+	if Input.is_action_just_pressed(\"ui_cancel\"):
+		hide()
 "
 
 [node name="Report" type="Control"]
@@ -56,6 +70,7 @@ autowrap = true
 margin_top = 185.0
 margin_right = 631.0
 margin_bottom = 227.0
+align = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
 margin_top = 231.0
@@ -74,45 +89,95 @@ autowrap = true
 margin_top = 299.0
 margin_right = 631.0
 margin_bottom = 341.0
+align = 2
 
-[node name="Question4" type="Label" parent="VBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
 margin_top = 345.0
 margin_right = 631.0
-margin_bottom = 412.0
-text = "4. Сопоставьте каждому никнейму настоящее имя игрока"
+margin_bottom = 373.0
+custom_constants/margin_bottom = 28
+
+[node name="Question4" type="Label" parent="VBoxContainer"]
+margin_top = 377.0
+margin_right = 631.0
+margin_bottom = 409.0
+text = "4. Какой никнейм у жертвы в этом чате?"
 autowrap = true
 
 [node name="Answer4" type="LineEdit" parent="VBoxContainer"]
-margin_top = 416.0
+margin_top = 413.0
 margin_right = 631.0
-margin_bottom = 458.0
+margin_bottom = 455.0
+align = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 459.0
+margin_right = 631.0
+margin_bottom = 487.0
+custom_constants/margin_bottom = 28
 
 [node name="Question5" type="Label" parent="VBoxContainer"]
-margin_top = 462.0
+margin_top = 491.0
 margin_right = 631.0
-margin_bottom = 529.0
-text = "5. Сопоставьте каждому игроку его адрес проживания"
+margin_bottom = 558.0
+text = "4. Сопоставьте каждому никнейму настоящее имя игрока"
 autowrap = true
 
 [node name="Answer5" type="LineEdit" parent="VBoxContainer"]
-margin_top = 533.0
+margin_top = 562.0
 margin_right = 631.0
-margin_bottom = 575.0
+margin_bottom = 604.0
+align = 2
+
+[node name="MarginContainer5" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 608.0
+margin_right = 631.0
+margin_bottom = 636.0
+custom_constants/margin_bottom = 28
 
 [node name="Question6" type="Label" parent="VBoxContainer"]
-margin_top = 579.0
+margin_top = 640.0
 margin_right = 631.0
-margin_bottom = 646.0
-text = "6. Кто добрался первым до игрока под никнеймом saxxxy13?"
+margin_bottom = 707.0
+text = "5. Сопоставьте каждому игроку его адрес проживания"
 autowrap = true
 
 [node name="Answer6" type="LineEdit" parent="VBoxContainer"]
-margin_top = 650.0
+margin_top = 711.0
 margin_right = 631.0
-margin_bottom = 692.0
+margin_bottom = 753.0
+align = 2
+
+[node name="MarginContainer6" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 757.0
+margin_right = 631.0
+margin_bottom = 785.0
+custom_constants/margin_bottom = 28
+
+[node name="Question7" type="Label" parent="VBoxContainer"]
+margin_top = 789.0
+margin_right = 631.0
+margin_bottom = 821.0
+text = "6. Кто добрался первым до жертвы?"
+autowrap = true
+
+[node name="Answer7" type="LineEdit" parent="VBoxContainer"]
+margin_top = 825.0
+margin_right = 631.0
+margin_bottom = 867.0
+align = 2
+
+[node name="MarginContainer7" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 871.0
+margin_right = 631.0
+margin_bottom = 899.0
+custom_constants/margin_bottom = 28
 
 [node name="Button" type="Button" parent="VBoxContainer"]
-margin_top = 696.0
+margin_top = 1055.0
 margin_right = 631.0
-margin_bottom = 734.0
+margin_bottom = 1093.0
+size_flags_vertical = 6
+disabled = true
 text = "Завершить отчёт"
+flat = true
