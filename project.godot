@@ -20,7 +20,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="The Elimination Game"
+config/name="Dodgeball: A Short Detective Game"
 run/main_scene="res://main.tscn"
 boot_splash/show_image=false
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
@@ -37,6 +37,7 @@ window/size/width=720
 window/size/height=1280
 window/size/test_width=450
 window/size/test_height=800
+window/dpi/allow_hidpi=true
 window/handheld/orientation="portrait"
 window/stretch/mode="2d"
 window/stretch/aspect="keep_width"
