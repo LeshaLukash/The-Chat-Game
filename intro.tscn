@@ -94,6 +94,8 @@ text = "Вчера было совершено убийство.
 Ваша задача: изучить этот групповой чат, выяснить как можно больше информации об его участниках.
 
 И установить личность убийцы."
+fit_content_height = true
+scroll_active = false
 
 [node name="ContinueButton" type="Button" parent="."]
 visible = false

@@ -24,6 +24,11 @@ func _ready():
 	$Chat/ChatContainer.load_chat()
 
 
+func _notification(what):
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST and not $Report.visible:
+		get_tree().quit()
+
+
 # Код для проверки запуска игры из браузера смартфона
 func is_web_mobile() -> bool:
 	return JavaScript.eval("/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigation.userAgent)", true)
