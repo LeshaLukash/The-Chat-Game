@@ -55,7 +55,10 @@ pointing/emulate_touch_from_mouse.Android=true
 
 [locale]
 
-locale_filter=[ 0, [  ] ]
+locale_filter=[ 1, [ "en", "ru" ] ]
+translation_remaps={
+}
+translations=PoolStringArray( "res://translation.en.translation", "res://translation.ru.translation" )
 
 [physics]
 

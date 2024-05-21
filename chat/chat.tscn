@@ -23,7 +23,6 @@ chat_text_file = "res://scripts/main_chat_ru.txt"
 
 [node name="ChatHeader" parent="." instance=ExtResource( 3 )]
 mouse_filter = 2
-chat_name = "Игра на выбывание"
 
 [node name="FadeRect" type="ColorRect" parent="."]
 anchor_right = 1.0

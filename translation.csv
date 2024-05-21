@@ -1,0 +1,20 @@
+keys,ru,en
+BEGIN_BUTTON,Начать,Begin
+CONTINUE_BUTTON,Продолжить,Continue
+BACK_TO_CHAT_BUTTON,Вернуться к беседе,Back to chat
+SETTINGS_BUTTON,Настройки,Settings
+REPORT_BUTTON,Составить отчёт,Make a report
+EXIT_BUTTON,Выйти,Exit
+CHAT_NAME,игра на выбывание,dodgeball
+CHAT_COUNTER,3 участника,3 members
+INTRO_TEXT,"[center]Вчера было совершено убийство.
+В ходе осмотра места преступления был обнаружен смартфон жертвы.
+На смартфоне обнаружился групповой чат, участие жертвы в котором, вероятно, и повлекло за собой преступление
+
+[u]Ваша задача: изучить этот групповой чат, выяснить как можно больше информации об его участниках.[/u]
+
+И установить личность убийцы.[/center]","[center]blablabla
+
+[u]blablabla.[/u]
+
+Blablabla[/center]"

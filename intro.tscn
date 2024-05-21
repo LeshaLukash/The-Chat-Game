@@ -13,6 +13,13 @@ var is_first_start := true
 
 func _ready():
 	set_process_input(false)
+	set_intro_text()
+
+# Загружает для интро локализированный текст
+func set_intro_text() -> void:
+	var intro_key: String = $IntroTextLabel.text
+	var intro_text: String = TranslationServer.translate(intro_key)
+	$IntroTextLabel.bbcode_text = intro_text
 
 
 func _on_Tween_tween_completed(_object, _key):
@@ -29,12 +36,12 @@ func _on_ContinueButton_pressed():
 	set_process_input(false)
 
 
-func _on_StartButton_pressed():
-	$StartButton.disabled = true
+func _on_BeginButton_pressed():
+	$BeginButton.disabled = true
 	if is_first_start:
 		$IntroTextLabel.show()
 		$ContinueButton.show()
-		$StartButton.hide()
+		$BeginButton.hide()
 		$LogoLabel.hide()
 	else:
 		_on_ContinueButton_pressed()
@@ -77,20 +84,8 @@ margin_bottom = 277.5
 mouse_filter = 2
 custom_fonts/normal_font = SubResource( 2 )
 bbcode_enabled = true
-bbcode_text = "[center]Вчера было совершено убийство.
-В ходе осмотра места преступления был обнаружен смартфон жертвы.
-На смартфоне обнаружился групповой чат, участие жертвы в котором, вероятно, и повлекло за собой преступление
-
-[u]Ваша задача: изучить этот групповой чат, выяснить как можно больше информации об его участниках.[/u]
-
-И установить личность убийцы.[/center]"
-text = "Вчера было совершено убийство.
-В ходе осмотра места преступления был обнаружен смартфон жертвы.
-На смартфоне обнаружился групповой чат, участие жертвы в котором, вероятно, и повлекло за собой преступление
-
-Ваша задача: изучить этот групповой чат, выяснить как можно больше информации об его участниках.
-
-И установить личность убийцы."
+bbcode_text = "INTRO_TEXT"
+text = "INTRO_TEXT"
 fit_content_height = true
 scroll_active = false
 
@@ -102,7 +97,7 @@ anchor_bottom = 1.0
 margin_top = -0.559998
 focus_mode = 0
 custom_fonts/font = SubResource( 3 )
-text = "Продолжить"
+text = "CONTINUE_BUTTON"
 flat = true
 icon_align = 1
 
@@ -126,16 +121,16 @@ text = "A
 valign = 1
 autowrap = true
 
-[node name="StartButton" type="Button" parent="."]
+[node name="BeginButton" type="Button" parent="."]
 anchor_top = 0.777
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 0.440002
 focus_mode = 0
 custom_fonts/font = SubResource( 4 )
-text = "Начать"
+text = "BEGIN_BUTTON"
 flat = true
 
 [connection signal="pressed" from="ContinueButton" to="." method="_on_ContinueButton_pressed"]
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
-[connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="BeginButton" to="." method="_on_BeginButton_pressed"]
