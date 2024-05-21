@@ -20,7 +20,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Dodgeball: A Short Detective Game"
+config/name="A Short Chat Detective Game"
 run/main_scene="res://main.tscn"
 boot_splash/show_image=false
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
