@@ -76,22 +76,22 @@ custom_constants/separation = 80
 
 [node name="DescriptionLabel" type="Label" parent="VBoxContainer"]
 margin_right = 562.0
-margin_bottom = 67.0
+margin_bottom = 32.0
 size_flags_vertical = 1
-text = "Внимательно изучите переписку и дайте ответы на нижеизложенные вопросы."
+text = "DESCRIPTION_LABEL"
 align = 1
 autowrap = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
-margin_top = 147.0
+margin_top = 112.0
 margin_right = 562.0
-margin_bottom = 555.0
+margin_bottom = 532.0
 
 [node name="Question1" type="Label" parent="VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 margin_right = 562.0
 margin_bottom = 32.0
-text = "1. Как называется беседа игры?"
+text = "QUESTION_ONE"
 
 [node name="Answer1" type="LineEdit" parent="VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -111,61 +111,59 @@ custom_constants/margin_bottom = 28
 unique_name_in_owner = true
 margin_top = 114.0
 margin_right = 562.0
-margin_bottom = 181.0
-text = "2. Сколько в ней состояло участников на момент начала игры?"
+margin_bottom = 146.0
+text = "QUESTION_TWO"
 autowrap = true
 
 [node name="Answer2" type="LineEdit" parent="VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
-margin_top = 185.0
+margin_top = 150.0
 margin_right = 562.0
-margin_bottom = 227.0
+margin_bottom = 192.0
 align = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
-margin_top = 231.0
+margin_top = 196.0
 margin_right = 562.0
-margin_bottom = 259.0
+margin_bottom = 224.0
 custom_constants/margin_bottom = 28
 
 [node name="Question3" type="Label" parent="VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
-margin_top = 263.0
+margin_top = 228.0
 margin_right = 562.0
-margin_bottom = 330.0
-text = "3. Перечислите через запятую никнеймы участников (не организатора)"
+margin_bottom = 260.0
+text = "QUESTION_THREE"
 autowrap = true
 
 [node name="Answer3" type="LineEdit" parent="VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
-margin_top = 334.0
+margin_top = 264.0
 margin_right = 562.0
-margin_bottom = 376.0
+margin_bottom = 306.0
 align = 2
 
 [node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
-margin_top = 380.0
+margin_top = 310.0
 margin_right = 562.0
-margin_bottom = 408.0
+margin_bottom = 338.0
 custom_constants/margin_bottom = 28
 
 [node name="Question4" type="Label" parent="VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
-visible = false
-margin_top = 306.0
+margin_top = 342.0
 margin_right = 562.0
-margin_bottom = 338.0
-text = "4. Какой никнейм у жертвы в этом чате?"
+margin_bottom = 374.0
+text = "QUESTION_FOUR"
 autowrap = true
 
 [node name="Answer4" type="LineEdit" parent="VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
-visible = false
-margin_top = 342.0
+margin_top = 378.0
 margin_right = 562.0
-margin_bottom = 384.0
+margin_bottom = 420.0
 align = 2
 
 [node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer/VBoxContainer"]
@@ -182,7 +180,7 @@ visible = false
 margin_top = 420.0
 margin_right = 562.0
 margin_bottom = 487.0
-text = "4. Сопоставьте каждому никнейму настоящее имя игрока"
+text = "QUESTION_FIVE"
 autowrap = true
 
 [node name="Answer5" type="LineEdit" parent="VBoxContainer/VBoxContainer"]
@@ -207,7 +205,7 @@ visible = false
 margin_top = 569.0
 margin_right = 562.0
 margin_bottom = 636.0
-text = "5. Сопоставьте каждому игроку его адрес проживания"
+text = "QUESTION_SIX"
 autowrap = true
 
 [node name="Answer6" type="LineEdit" parent="VBoxContainer/VBoxContainer"]
@@ -232,7 +230,7 @@ visible = false
 margin_top = 718.0
 margin_right = 562.0
 margin_bottom = 750.0
-text = "6. Кто добрался первым до жертвы?"
+text = "QUESTION_SEVEN"
 autowrap = true
 
 [node name="Answer7" type="LineEdit" parent="VBoxContainer/VBoxContainer"]
@@ -257,7 +255,7 @@ visible = false
 margin_top = 337.0
 margin_right = 562.0
 margin_bottom = 375.0
-text = "Завершить отчёт"
+text = "END_REPORT_BUTTON"
 flat = true
 
 [connection signal="text_entered" from="VBoxContainer/VBoxContainer/Answer1" to="." method="_on_Answer1_text_entered"]
