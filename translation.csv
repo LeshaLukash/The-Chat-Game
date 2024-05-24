@@ -18,11 +18,11 @@ INTRO_TEXT,"[center]Вчера было совершено убийство.
 [u]blablabla.[/u]
 
 Blablabla[/center]"
-DESCRIPTION_LABEL,Внимательно изучите переписку и дайте ответы на нижеизложенные вопросы.,description
-QUESTION_ONE,1. Как называется беседа игры?,
-QUESTION_TWO,2. Сколько в ней состояло участников на момент начала игры?,
-QUESTION_THREE,3. Перечислите через запятую никнеймы участников (не организатора),
-QUESTION_FOUR,4. Какой никнейм у жертвы в этом чате?,
+DESCRIPTION_LABEL,Внимательно изучите переписку и дайте ответы на вопросы ниже:,Carefully read the chat conversation and give answers to the next questions:
+QUESTION_ONE,1. Как называется беседа игры?,1. What is the chat name?
+QUESTION_TWO,2. Сколько в ней состояло участников на момент начала игры?,2. How many «players» were in the chat on the beginning of the game?
+QUESTION_THREE,3. Перечислите через запятую никнеймы участников (не организатора),"3. List the «players» nicknames, by comma."
+QUESTION_FOUR,"4. Какой никнейм у жертвы в этом чате, чью переписку вы изучаете?",4. What is the name of
 QUESTION_FIVE,5. Сопоставьте каждому никнейму настоящее имя игрока,
 QUESTION_SIX,6. Сопоставьте каждому игроку его адрес проживания,
 QUESTION_SEVEN,7. Кто добрался первым до жертвы?,
