@@ -49,3 +49,4 @@ func _on_Answer2_text_entered(new_text):
 func _on_Answer3_text_entered(new_text):
 	player_answers["players_nicknames"] = new_text.split(',', false)
 	
+

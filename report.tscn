@@ -66,7 +66,7 @@ visible = false
 margin_top = 114.0
 margin_right = 550.0
 margin_bottom = 181.0
-text = "2. Сколько в ней состояло участников на момент начала игры?"
+text = "2. Сколько в беседе было участников на момент начала игры?"
 autowrap = true
 
 [node name="Answer2" type="LineEdit" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
@@ -88,38 +88,13 @@ custom_constants/margin_bottom = 28
 [node name="Question3" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 visible = false
-margin_top = 263.0
-margin_right = 550.0
-margin_bottom = 330.0
-text = "3. Перечислите через запятую никнеймы непосредственно участников"
-autowrap = true
-
-[node name="Answer3" type="LineEdit" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
-unique_name_in_owner = true
-visible = false
-margin_top = 334.0
-margin_right = 550.0
-margin_bottom = 376.0
-align = 2
-
-[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
-unique_name_in_owner = true
-visible = false
-margin_top = 380.0
-margin_right = 550.0
-margin_bottom = 408.0
-custom_constants/margin_bottom = 28
-
-[node name="Question4" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
-unique_name_in_owner = true
-visible = false
 margin_top = 412.0
 margin_right = 550.0
 margin_bottom = 479.0
-text = "4. Укажите никнейм жертвы, кому принадлежит данная переписка"
+text = "3. Укажите никнейм жертвы, кому принадлежит данная переписка"
 autowrap = true
 
-[node name="Answer4" type="LineEdit" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Answer3" type="LineEdit" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 visible = false
 margin_top = 483.0
@@ -127,12 +102,37 @@ margin_right = 550.0
 margin_bottom = 525.0
 align = 2
 
-[node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 visible = false
 margin_top = 529.0
 margin_right = 550.0
 margin_bottom = 557.0
+custom_constants/margin_bottom = 28
+
+[node name="Question4" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+margin_top = 263.0
+margin_right = 550.0
+margin_bottom = 365.0
+text = "3. Перечислите (через запятую) никнеймы всех непосредственных участников игры"
+autowrap = true
+
+[node name="Answer4" type="LineEdit" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+margin_top = 334.0
+margin_right = 550.0
+margin_bottom = 376.0
+align = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+margin_top = 380.0
+margin_right = 550.0
+margin_bottom = 408.0
 custom_constants/margin_bottom = 28
 
 [node name="Question5" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
@@ -166,7 +166,7 @@ visible = false
 margin_top = 710.0
 margin_right = 550.0
 margin_bottom = 777.0
-text = "6. Сопоставьте каждому игроку его адрес проживания"
+text = "6. Сопоставьте каждому игроку адрес его проживания"
 autowrap = true
 
 [node name="Answer6" type="LineEdit" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
@@ -221,4 +221,4 @@ flat = true
 
 [connection signal="text_entered" from="VBoxContainer/ScrollContainer/VBoxContainer/Answer1" to="." method="_on_Answer1_text_entered"]
 [connection signal="text_entered" from="VBoxContainer/ScrollContainer/VBoxContainer/Answer2" to="." method="_on_Answer2_text_entered"]
-[connection signal="text_entered" from="VBoxContainer/ScrollContainer/VBoxContainer/Answer3" to="." method="_on_Answer3_text_entered"]
+[connection signal="text_entered" from="VBoxContainer/ScrollContainer/VBoxContainer/Answer4" to="." method="_on_Answer3_text_entered"]
