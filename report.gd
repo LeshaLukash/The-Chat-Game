@@ -29,18 +29,28 @@ func _input(_event):
 		hide()
 
 
-func _on_Answer1_text_entered(new_text):
-	player_answers["chat_name"] = new_text
+func _on_Answer1_text_changed(new_text):
 	if not new_text.empty():
+		get_node("%Button1").show()
+
+
+func _on_Button1_pressed():
+	player_answers["chat_name"] = get_node("%Answer1").text
+	if not player_answers["chat_name"].empty():
 		get_node("%Question2").show()
 		get_node("%Answer2").show()
 		get_node("%MarginContainer2").show()
 
 
-func _on_Answer2_text_entered(new_text):
-	player_answers["total_players"] = int(new_text)
-	print(player_answers["total_players"])
+func _on_Answer2_text_changed(new_text):
 	if not new_text.empty():
+		get_node("%Button2").show()
+
+
+func _on_Button2_pressed():
+	player_answers["total_players"] = int(get_node("%Answer2").text)
+	print(player_answers["total_players"])
+	if not player_answers["total_players"] == 0:
 		get_node("%Question3").show()
 		get_node("%Answer3").show()
 		get_node("%MarginContainer3").show()
@@ -49,4 +59,9 @@ func _on_Answer2_text_entered(new_text):
 func _on_Answer3_text_entered(new_text):
 	player_answers["players_nicknames"] = new_text.split(',', false)
 	
+
+
+
+
+
 
