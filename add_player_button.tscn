@@ -1,0 +1,78 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+resource_name = "add_player_button"
+script/source = "extends Control
+
+signal player_added
+signal player_cleared
+
+
+var is_empty := true
+var player_nickname := \"\"
+
+
+func _on_AddPlayerButton_pressed():
+	get_node(\"%AddPlayerLineEdit\").text = player_nickname
+	get_node(\"%AddPlayerLineEdit\").show()
+	get_node(\"%AddPlayerLineEdit\").grab_focus()
+	get_node(\"%ConfirmButton\").show()
+
+
+func _on_ConfirmButton_pressed():
+	player_nickname = get_node(\"%AddPlayerLineEdit\").text
+	is_empty = player_nickname.empty()
+	get_node(\"%AddPlayerLineEdit\").hide()
+	get_node(\"%ConfirmButton\").hide()
+	
+	if is_empty:
+		get_node(\"%AddPlayerButton\").text = \"+\"
+		emit_signal(\"player_cleared\")
+	else:
+		get_node(\"%AddPlayerButton\").text = player_nickname
+		emit_signal(\"player_added\")
+"
+
+[node name="AddPlayerButton" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 0.033
+margin_bottom = -0.239998
+rect_min_size = Vector2( 0, 42 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = SubResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="AddPlayerButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+margin_right = 720.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 0, 42 )
+text = "+"
+
+[node name="AddPlayerLineEdit" type="LineEdit" parent="VBoxContainer/AddPlayerButton"]
+unique_name_in_owner = true
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="ConfirmButton" type="Button" parent="VBoxContainer/AddPlayerButton"]
+unique_name_in_owner = true
+visible = false
+anchor_top = 1.214
+anchor_right = 1.0
+anchor_bottom = 2.214
+margin_top = 0.0119972
+margin_bottom = 0.012001
+text = "CONFIRM_PLAYER"
+
+[connection signal="pressed" from="VBoxContainer/AddPlayerButton" to="." method="_on_AddPlayerButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/AddPlayerButton/ConfirmButton" to="." method="_on_ConfirmButton_pressed"]
