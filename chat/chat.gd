@@ -76,4 +76,5 @@ func _on_SidePanel_chat_pressed():
 
 
 func _on_SidePanel_report_pressed():
+	$SidePanel.animate_panel(false)
 	emit_signal("report_pressed")
