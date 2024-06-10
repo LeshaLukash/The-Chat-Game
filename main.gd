@@ -14,7 +14,7 @@ func _init():
 func _ready():
 	$Intro.is_first_start = is_first_launch()
 	if not is_first_launch():
-		$Intro/BeginButton.text = "CONTINUE_BUTTON"
+		$Intro/BeginButton.text = "Продолжить"
 	$Intro.show()
 	
 	$Chat.set_process_input(false)
