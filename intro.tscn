@@ -113,16 +113,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -199.0
-margin_top = -307.0
-margin_right = 199.0
-margin_bottom = 241.0
+margin_left = -219.0
+margin_top = -95.5
+margin_right = 219.0
+margin_bottom = 95.5
 custom_fonts/font = ExtResource( 2 )
-text = "A
- Short
-  Chat
-   Detective
-    Game"
+text = "A Short Chat
+Investigation"
 valign = 1
 autowrap = true
 

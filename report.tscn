@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://report.gd" type="Script" id=1]
+[ext_resource path="res://question_field.tscn" type="PackedScene" id=2]
 
 [node name="Report" type="Control"]
 anchor_right = 1.0
@@ -35,9 +36,74 @@ margin_right = 562.0
 margin_bottom = 1144.0
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+[node name="QuestionsList" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
 margin_right = 562.0
+margin_bottom = 102.0
 size_flags_horizontal = 3
+
+[node name="QuestionField1" parent="VBoxContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
+unique_name_in_owner = true
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 562.0
+margin_bottom = 102.0
+question_text = "Как назвается чат, который вы изучаете?"
+
+[node name="QuestionField2" parent="VBoxContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
+unique_name_in_owner = true
+visible = false
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 106.0
+margin_right = 562.0
+margin_bottom = 243.0
+question_text = "Сколько человек было в чате на 
+момент начала игры?"
+
+[node name="QuestionField3" parent="VBoxContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
+unique_name_in_owner = true
+visible = false
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 247.0
+margin_right = 562.0
+margin_bottom = 384.0
+question_text = "Назовите никнейм первого погибшего
+игрока"
+
+[node name="QuestionField4" parent="VBoxContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
+unique_name_in_owner = true
+visible = false
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 388.0
+margin_right = 562.0
+margin_bottom = 525.0
+question_text = "Как зовут игрока, убившего жертву из
+предыдущего вопроса"
+
+[node name="QuestionField5" parent="VBoxContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
+unique_name_in_owner = true
+visible = false
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 529.0
+margin_right = 562.0
+margin_bottom = 666.0
+question_text = "Где проживает игрок, от лица которого вы
+изучаете данный чат?"
+
+[node name="QuestionField6" parent="VBoxContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
+unique_name_in_owner = true
+visible = false
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 670.0
+margin_right = 562.0
+margin_bottom = 807.0
+question_text = "Где проживает игрок, котоый первым
+добрался до игрока \"saxxxy13\"?"
 
 [node name="EndReportButton" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
@@ -45,5 +111,13 @@ visible = false
 margin_top = 1106.0
 margin_right = 562.0
 margin_bottom = 1144.0
+focus_mode = 0
 text = "Завершить отчёт"
 flat = true
+
+[connection signal="answer_added" from="VBoxContainer/ScrollContainer/QuestionsList/QuestionField1" to="." method="_on_QuestionField1_answer_added"]
+[connection signal="answer_added" from="VBoxContainer/ScrollContainer/QuestionsList/QuestionField2" to="." method="_on_QuestionField2_answer_added"]
+[connection signal="answer_added" from="VBoxContainer/ScrollContainer/QuestionsList/QuestionField3" to="." method="_on_QuestionField3_answer_added"]
+[connection signal="answer_added" from="VBoxContainer/ScrollContainer/QuestionsList/QuestionField4" to="." method="_on_QuestionField4_answer_added"]
+[connection signal="answer_added" from="VBoxContainer/ScrollContainer/QuestionsList/QuestionField5" to="." method="_on_QuestionField5_answer_added"]
+[connection signal="answer_added" from="VBoxContainer/ScrollContainer/QuestionsList/QuestionField6" to="." method="_on_QuestionField6_answer_added"]
