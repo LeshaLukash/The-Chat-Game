@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://report.gd" type="Script" id=1]
 [ext_resource path="res://question_field.tscn" type="PackedScene" id=2]
+[ext_resource path="res://android-arrow-back.png" type="Texture" id=3]
 
 [node name="Report" type="Control"]
 anchor_right = 1.0
@@ -13,11 +14,43 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
 
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+margin_bottom = 100.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+margin_right = 10.0
+margin_bottom = 100.0
+custom_constants/margin_right = 10
+
+[node name="BackButton" type="TextureButton" parent="HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 14.0
+margin_right = 54.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 40, 40 )
+size_flags_vertical = 3
+texture_normal = ExtResource( 3 )
+expand = true
+stretch_mode = 5
+
+[node name="MarginContainer4" type="MarginContainer" parent="HBoxContainer"]
+margin_left = 58.0
+margin_right = 68.0
+margin_bottom = 100.0
+custom_constants/margin_right = 10
+
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer"]
+margin_left = 72.0
+margin_right = 136.0
+margin_bottom = 100.0
+custom_constants/margin_right = 64
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 79.0
-margin_top = 68.0
+margin_top = 110.0
 margin_right = -79.0
 margin_bottom = -68.0
 custom_constants/separation = 80
@@ -25,7 +58,7 @@ custom_constants/separation = 80
 [node name="DescriptionLabel" type="Label" parent="VBoxContainer"]
 margin_right = 562.0
 margin_bottom = 67.0
-size_flags_vertical = 1
+size_flags_horizontal = 3
 text = "Внимательно изучите переписку и заполните анкету ниже:"
 align = 1
 autowrap = true
@@ -33,7 +66,7 @@ autowrap = true
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
 margin_top = 147.0
 margin_right = 562.0
-margin_bottom = 1144.0
+margin_bottom = 1102.0
 size_flags_vertical = 3
 
 [node name="QuestionsList" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
@@ -108,16 +141,18 @@ question_text = "Где проживает игрок, котоый первым
 [node name="EndReportButton" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
 visible = false
-margin_top = 1106.0
+margin_top = 1064.0
 margin_right = 562.0
-margin_bottom = 1144.0
+margin_bottom = 1102.0
 focus_mode = 0
 text = "Завершить отчёт"
 flat = true
 
+[connection signal="pressed" from="HBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="answer_added" from="VBoxContainer/ScrollContainer/QuestionsList/QuestionField1" to="." method="_on_QuestionField1_answer_added"]
 [connection signal="answer_added" from="VBoxContainer/ScrollContainer/QuestionsList/QuestionField2" to="." method="_on_QuestionField2_answer_added"]
 [connection signal="answer_added" from="VBoxContainer/ScrollContainer/QuestionsList/QuestionField3" to="." method="_on_QuestionField3_answer_added"]
 [connection signal="answer_added" from="VBoxContainer/ScrollContainer/QuestionsList/QuestionField4" to="." method="_on_QuestionField4_answer_added"]
 [connection signal="answer_added" from="VBoxContainer/ScrollContainer/QuestionsList/QuestionField5" to="." method="_on_QuestionField5_answer_added"]
 [connection signal="answer_added" from="VBoxContainer/ScrollContainer/QuestionsList/QuestionField6" to="." method="_on_QuestionField6_answer_added"]
+[connection signal="pressed" from="VBoxContainer/EndReportButton" to="." method="_on_EndReportButton_pressed"]
