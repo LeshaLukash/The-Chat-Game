@@ -114,7 +114,7 @@ margin_top = 388.0
 margin_right = 562.0
 margin_bottom = 525.0
 question_text = "Как зовут игрока, убившего жертву из
-предыдущего вопроса"
+предыдущего вопроса?"
 
 [node name="QuestionField5" parent="VBoxContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
 unique_name_in_owner = true

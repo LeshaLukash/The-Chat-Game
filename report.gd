@@ -17,8 +17,8 @@ var correct_answers := {
 	answer2 = [6, "шесть"],
 	answer3 = "bloody_mary01",
 	answer4 = "джеймс",
-	answer5 = ["крейга 41", "крейг 41"],
-	answer6 = ["финнеа 34", "финеа 34"]
+	answer5 = ["крейга41", "крейга,41", "крейга 41", "крейга, 41"],
+	answer6 = ["финнеа34", "финеа34", "финнеа,34", "финеа,34", "финнеа 34", "финеа 34", "финеа, 34", "финнеа, 34"]
 }
 
 
@@ -43,23 +43,25 @@ func _on_BackButton_pressed():
 	emit_signal("back_pressed")
 
 
+# Подсчитываем кол-во данных ответов
 func check_answers_amount() -> void:
 	var answers_given := 0
 	var questions = get_node("%QuestionsList").get_children()
 	
-	for i in questions.size() - 1:
+	for i in questions.size():
 		if not questions[i].answer.empty():
 			answers_given += 1
 			questions[i].show()
-			if i != questions.size():
+			if i != questions.size() - 1:
 				questions[i + 1].show()
 	
-	get_node("%EndReportButton").visible = (ANSWERS_REQUIRED == answers_given + 1)
+	get_node("%EndReportButton").visible = (ANSWERS_REQUIRED == answers_given)
 
 
 func check_correct_answers() -> int:
 	var result := 0
 	for question in get_node("%QuestionsList").get_children():
+		print(question.answer + "\n")
 		match question.name:
 			"QuestionField1":
 				if question.answer.to_lower() == correct_answers["answer1"]:
@@ -77,11 +79,11 @@ func check_correct_answers() -> int:
 				if question.answer.to_lower() == correct_answers["answer4"]:
 					result += 22
 			"QuestionField5":
-				var answer: String = question.answer.to_lower() 
+				var answer: String = question.answer.to_lower().lstrip("улица.,").dedent()
 				if correct_answers["answer5"].has(answer):
 					result += 23
 			"QuestionField6":
-				var answer: String = question.answer.to_lower()
+				var answer: String = question.answer.to_lower().lstrip("улица,.").dedent()
 				if correct_answers["answer6"].has(answer):
 					result += 30
 	print("Ваш результат: " + str(result))

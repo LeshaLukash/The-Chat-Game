@@ -4,7 +4,6 @@ onready var ReportPercentLabel: Label = get_node("%ReportPercentLabel")
 onready var ResumeLabel: Label = get_node("%ResumeLabel")
 
 
-
 func calc_outro(percent: int) -> void:
 	ReportPercentLabel.text = "Ваш отчёт оказался верен на %d %%." %percent
 	
@@ -14,7 +13,7 @@ func calc_outro(percent: int) -> void:
 	elif percent in range(10, 24):
 		resume = "Чат изучен поверхностно"
 	elif percent in range(24, 46):
-		resume = "Чат изучен более-менеее"
+		resume = "Чат изучен более-менее"
 	elif percent in range(46, 71):
 		resume = "Чат изучен хорошо"
 	elif percent in range(71, 100):
