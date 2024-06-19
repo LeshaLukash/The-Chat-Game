@@ -25,13 +25,41 @@ custom_constants/separation = 65
 
 [node name="ReportPercentLabel" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 margin_right = 462.0
 margin_bottom = 32.0
 align = 1
 valign = 1
 
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 462.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+margin_right = 50.0
+margin_bottom = 32.0
+custom_constants/margin_right = 50
+
+[node name="ReportProgressBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 54.0
+margin_right = 408.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+step = 1.0
+
+[node name="Tween" type="Tween" parent="VBoxContainer/HBoxContainer/ReportProgressBar"]
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 412.0
+margin_right = 462.0
+margin_bottom = 32.0
+custom_constants/margin_right = 50
+
 [node name="ResumeLabel" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 margin_top = 97.0
 margin_right = 462.0
 margin_bottom = 129.0
@@ -40,6 +68,7 @@ valign = 1
 autowrap = true
 
 [node name="Credits" type="Label" parent="."]
+visible = false
 anchor_left = 0.0319444
 anchor_top = 0.989844
 anchor_right = 0.0319444
@@ -53,3 +82,5 @@ text = "Автор игры: Lesha Lukash
 __meta__ = {
 "_edit_use_anchors_": true
 }
+
+[connection signal="tween_completed" from="VBoxContainer/HBoxContainer/ReportProgressBar/Tween" to="." method="_on_Tween_tween_completed"]

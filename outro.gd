@@ -2,9 +2,17 @@ extends Control
 
 onready var ReportPercentLabel: Label = get_node("%ReportPercentLabel")
 onready var ResumeLabel: Label = get_node("%ResumeLabel")
+onready var ReportProgressBarTween: Tween = get_node("%ReportProgressBar/Tween")
+
+
+func _ready():
+	calc_outro(77)
 
 
 func calc_outro(percent: int) -> void:
+	
+	ReportProgressBarTween.interpolate_property($ReportProgressBar, "value", 0, percent, 5.0, Tween.TRANS_EXPO, Tween.EASE_OUT)
+	ReportProgressBarTween.start()
 	ReportPercentLabel.text = "Ваш отчёт оказался верен на %d %%." %percent
 	
 	var resume: String
@@ -22,3 +30,9 @@ func calc_outro(percent: int) -> void:
 		resume = "Чат изучен целиком и полностью, ни единой помарки!"
 		
 	ResumeLabel.text = resume
+
+
+func _on_Tween_tween_completed(object, key):
+	ReportPercentLabel.show()
+	ResumeLabel.show()
+	$Credits.show()
