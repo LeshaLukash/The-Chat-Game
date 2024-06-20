@@ -11,7 +11,9 @@ func _ready():
 
 func calc_outro(percent: int) -> void:
 	
-	ReportProgressBarTween.interpolate_property($ReportProgressBar, "value", 0, percent, 5.0, Tween.TRANS_EXPO, Tween.EASE_OUT)
+	# warning-ignore:return_value_discarded
+	ReportProgressBarTween.interpolate_property(get_node("%ReportProgressBar"), "value", 0, percent, 5.0, Tween.TRANS_EXPO, Tween.EASE_OUT)
+	# warning-ignore:return_value_discarded
 	ReportProgressBarTween.start()
 	ReportPercentLabel.text = "Ваш отчёт оказался верен на %d %%." %percent
 	
@@ -32,7 +34,7 @@ func calc_outro(percent: int) -> void:
 	ResumeLabel.text = resume
 
 
-func _on_Tween_tween_completed(object, key):
+func _on_Tween_tween_completed(_object, _key):
 	ReportPercentLabel.show()
 	ResumeLabel.show()
 	$Credits.show()

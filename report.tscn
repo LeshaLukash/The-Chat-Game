@@ -14,16 +14,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HeaderPanelContainer" type="HBoxContainer" parent="."]
 anchor_right = 1.0
 margin_bottom = 100.0
 
-[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="HeaderPanelContainer"]
 margin_right = 10.0
 margin_bottom = 100.0
 custom_constants/margin_right = 10
 
-[node name="BackButton" type="TextureButton" parent="HBoxContainer"]
+[node name="BackButton" type="TextureButton" parent="HeaderPanelContainer"]
 unique_name_in_owner = true
 margin_left = 14.0
 margin_right = 54.0
@@ -34,19 +34,19 @@ texture_normal = ExtResource( 3 )
 expand = true
 stretch_mode = 5
 
-[node name="MarginContainer4" type="MarginContainer" parent="HBoxContainer"]
+[node name="MarginContainer4" type="MarginContainer" parent="HeaderPanelContainer"]
 margin_left = 58.0
 margin_right = 68.0
 margin_bottom = 100.0
 custom_constants/margin_right = 10
 
-[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="HeaderPanelContainer"]
 margin_left = 72.0
 margin_right = 136.0
 margin_bottom = 100.0
 custom_constants/margin_right = 64
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="ReportContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 79.0
@@ -55,7 +55,7 @@ margin_right = -79.0
 margin_bottom = -68.0
 custom_constants/separation = 80
 
-[node name="DescriptionLabel" type="Label" parent="VBoxContainer"]
+[node name="DescriptionLabel" type="Label" parent="ReportContainer"]
 margin_right = 562.0
 margin_bottom = 67.0
 size_flags_horizontal = 3
@@ -63,19 +63,19 @@ text = "Внимательно изучите переписку и заполн
 align = 1
 autowrap = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="ReportContainer"]
 margin_top = 147.0
 margin_right = 562.0
 margin_bottom = 1102.0
 size_flags_vertical = 3
 
-[node name="QuestionsList" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+[node name="QuestionsList" type="VBoxContainer" parent="ReportContainer/ScrollContainer"]
 unique_name_in_owner = true
 margin_right = 562.0
 margin_bottom = 102.0
 size_flags_horizontal = 3
 
-[node name="QuestionField1" parent="VBoxContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
+[node name="QuestionField1" parent="ReportContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
 unique_name_in_owner = true
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -83,7 +83,7 @@ margin_right = 562.0
 margin_bottom = 102.0
 question_text = "Как назвается чат, который вы изучаете?"
 
-[node name="QuestionField2" parent="VBoxContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
+[node name="QuestionField2" parent="ReportContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
 unique_name_in_owner = true
 visible = false
 anchor_right = 0.0
@@ -94,7 +94,7 @@ margin_bottom = 243.0
 question_text = "Сколько человек было в чате на 
 момент начала игры?"
 
-[node name="QuestionField3" parent="VBoxContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
+[node name="QuestionField3" parent="ReportContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
 unique_name_in_owner = true
 visible = false
 anchor_right = 0.0
@@ -105,7 +105,7 @@ margin_bottom = 384.0
 question_text = "Назовите никнейм первого погибшего
 игрока"
 
-[node name="QuestionField4" parent="VBoxContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
+[node name="QuestionField4" parent="ReportContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
 unique_name_in_owner = true
 visible = false
 anchor_right = 0.0
@@ -116,7 +116,7 @@ margin_bottom = 525.0
 question_text = "Как зовут игрока, убившего жертву из
 предыдущего вопроса?"
 
-[node name="QuestionField5" parent="VBoxContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
+[node name="QuestionField5" parent="ReportContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
 unique_name_in_owner = true
 visible = false
 anchor_right = 0.0
@@ -127,7 +127,7 @@ margin_bottom = 666.0
 question_text = "Где проживает игрок, от лица которого вы
 изучаете данный чат?"
 
-[node name="QuestionField6" parent="VBoxContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
+[node name="QuestionField6" parent="ReportContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
 unique_name_in_owner = true
 visible = false
 anchor_right = 0.0
@@ -138,7 +138,7 @@ margin_bottom = 807.0
 question_text = "Где проживает игрок, котоый первым
 добрался до игрока \"saxxxy13\"?"
 
-[node name="EndReportButton" type="Button" parent="VBoxContainer"]
+[node name="EndReportButton" type="Button" parent="ReportContainer"]
 unique_name_in_owner = true
 visible = false
 margin_top = 1064.0
@@ -148,11 +148,62 @@ focus_mode = 0
 text = "Завершить отчёт"
 flat = true
 
-[connection signal="pressed" from="HBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
-[connection signal="answer_added" from="VBoxContainer/ScrollContainer/QuestionsList/QuestionField1" to="." method="_on_QuestionField1_answer_added"]
-[connection signal="answer_added" from="VBoxContainer/ScrollContainer/QuestionsList/QuestionField2" to="." method="_on_QuestionField2_answer_added"]
-[connection signal="answer_added" from="VBoxContainer/ScrollContainer/QuestionsList/QuestionField3" to="." method="_on_QuestionField3_answer_added"]
-[connection signal="answer_added" from="VBoxContainer/ScrollContainer/QuestionsList/QuestionField4" to="." method="_on_QuestionField4_answer_added"]
-[connection signal="answer_added" from="VBoxContainer/ScrollContainer/QuestionsList/QuestionField5" to="." method="_on_QuestionField5_answer_added"]
-[connection signal="answer_added" from="VBoxContainer/ScrollContainer/QuestionsList/QuestionField6" to="." method="_on_QuestionField6_answer_added"]
-[connection signal="pressed" from="VBoxContainer/EndReportButton" to="." method="_on_EndReportButton_pressed"]
+[node name="WarningPopup" type="Popup" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -258.5
+margin_top = -225.5
+margin_right = 258.5
+margin_bottom = 225.5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WarningPopup"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -203.5
+margin_top = -68.5
+margin_right = 204.5
+margin_bottom = 69.5
+
+[node name="Label" type="Label" parent="WarningPopup/VBoxContainer"]
+margin_right = 408.0
+margin_bottom = 32.0
+size_flags_vertical = 2
+text = "Вы уверены?"
+align = 1
+valign = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WarningPopup/VBoxContainer"]
+margin_top = 100.0
+margin_right = 408.0
+margin_bottom = 138.0
+
+[node name="YesButton" type="Button" parent="WarningPopup/VBoxContainer/HBoxContainer"]
+margin_left = 69.0
+margin_right = 116.0
+margin_bottom = 38.0
+size_flags_horizontal = 6
+text = "Да"
+flat = true
+
+[node name="GoBackButton" type="Button" parent="WarningPopup/VBoxContainer/HBoxContainer"]
+margin_left = 190.0
+margin_right = 408.0
+margin_bottom = 38.0
+size_flags_horizontal = 6
+text = "Перепроверить"
+flat = true
+
+[connection signal="pressed" from="HeaderPanelContainer/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="answer_added" from="ReportContainer/ScrollContainer/QuestionsList/QuestionField1" to="." method="_on_QuestionField1_answer_added"]
+[connection signal="answer_added" from="ReportContainer/ScrollContainer/QuestionsList/QuestionField2" to="." method="_on_QuestionField2_answer_added"]
+[connection signal="answer_added" from="ReportContainer/ScrollContainer/QuestionsList/QuestionField3" to="." method="_on_QuestionField3_answer_added"]
+[connection signal="answer_added" from="ReportContainer/ScrollContainer/QuestionsList/QuestionField4" to="." method="_on_QuestionField4_answer_added"]
+[connection signal="answer_added" from="ReportContainer/ScrollContainer/QuestionsList/QuestionField5" to="." method="_on_QuestionField5_answer_added"]
+[connection signal="answer_added" from="ReportContainer/ScrollContainer/QuestionsList/QuestionField6" to="." method="_on_QuestionField6_answer_added"]
+[connection signal="pressed" from="ReportContainer/EndReportButton" to="." method="_on_EndReportButton_pressed"]
+[connection signal="pressed" from="WarningPopup/VBoxContainer/HBoxContainer/YesButton" to="." method="_on_YesButton_pressed"]
+[connection signal="pressed" from="WarningPopup/VBoxContainer/HBoxContainer/GoBackButton" to="." method="_on_GoBackButton_pressed"]

@@ -133,6 +133,19 @@ func _on_QuestionField6_answer_added():
 
 func _on_EndReportButton_pressed():
 	# warning-ignore:return_value_discarded
+	$WarningPopup.popup_centered()
+	$ReportContainer.hide()
+	$HeaderPanelContainer.hide()
+
+
+
+func _on_YesButton_pressed():
 	emit_signal("report_filled")
+	$WarningPopup.hide()
 	hide()
 
+
+func _on_GoBackButton_pressed():
+	$WarningPopup.hide()
+	$ReportContainer.show()
+	$HeaderPanelContainer.show()
