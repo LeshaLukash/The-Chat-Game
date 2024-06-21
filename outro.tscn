@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://outro.gd" type="Script" id=1]
+[ext_resource path="res://theme.tres" type="Theme" id=2]
 
 [node name="Outro" type="Control"]
 anchor_right = 1.0
@@ -18,9 +19,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -231.0
-margin_top = -99.5
+margin_top = -117.0
 margin_right = 231.0
-margin_bottom = 99.5
+margin_bottom = 117.0
 custom_constants/separation = 65
 
 [node name="ReportPercentLabel" type="Label" parent="VBoxContainer"]
@@ -32,37 +33,44 @@ align = 1
 valign = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 97.0
 margin_right = 462.0
-margin_bottom = 32.0
+margin_bottom = 137.0
+size_flags_vertical = 6
 alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
 margin_right = 50.0
-margin_bottom = 32.0
+margin_bottom = 40.0
 custom_constants/margin_right = 50
 
 [node name="ReportProgressBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 margin_left = 54.0
 margin_right = 408.0
-margin_bottom = 32.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
 size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
 step = 1.0
+percent_visible = false
 
 [node name="Tween" type="Tween" parent="VBoxContainer/HBoxContainer/ReportProgressBar"]
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
 margin_left = 412.0
 margin_right = 462.0
-margin_bottom = 32.0
+margin_bottom = 40.0
 custom_constants/margin_right = 50
 
 [node name="ResumeLabel" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
 visible = false
-margin_top = 97.0
+margin_top = 202.0
 margin_right = 462.0
-margin_bottom = 129.0
+margin_bottom = 234.0
+size_flags_vertical = 10
 align = 1
 valign = 1
 autowrap = true
