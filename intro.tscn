@@ -9,6 +9,7 @@ script/source = "extends Control
 signal faded
 
 var is_first_start := true
+var is_report_filled := false
 
 
 func _ready():
@@ -36,8 +37,10 @@ func _on_BeginButton_pressed():
 		$ContinueButton.show()
 		$BeginButton.hide()
 		$LogoLabel.hide()
-	else:
+	elif not is_report_filled:
 		_on_ContinueButton_pressed()
+	else:
+		pass
 	
 "
 

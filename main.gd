@@ -3,6 +3,7 @@ extends Control
 
 const SAVE_DATE := "user://save_date.dat"
 const SAVE_PLAYER_ANSWERS := "user://save_player_answers.dat"
+const REPORT_SAVE_PATH := "user://report_save.dat"
 
 
 # Здесь хранятся ответы игрока
@@ -24,18 +25,24 @@ func _init():
 
 
 func _ready():
-	$Intro.is_first_start = is_first_launch()
-	if not is_first_launch():
-		$Intro/BeginButton.text = "Продолжить"
-	$Intro.show()
-	
 	$Chat.set_process_input(false)
 	$Intro.set_process_input(true)
 	
-	add_crime_date()
-	load_player_answers()
-	$Report.check_answers_amount()
-	$Chat/ChatContainer.load_chat()
+	$Intro.is_first_start = is_first_launch()
+	var score = is_report_filled()
+
+	if not is_first_launch():
+		$Intro/BeginButton.text = "Продолжить"
+	elif score > -1:
+		$Intro/BeginButton.text = "Посмотреть итоги"
+		$Intro.is_report_filled = true
+	$Intro.show()
+
+	if not is_report_filled():
+		load_player_answers()
+		$Report.check_answers_amount()
+		add_crime_date()
+		$Chat/ChatContainer.load_chat()
 
 
 func _notification(what):
@@ -71,11 +78,13 @@ func add_crime_date() -> void:
 func load_player_answers() -> void:
 	var f = File.new()
 	if not f.file_exists(SAVE_PLAYER_ANSWERS):
+		f.close()
 		return
 	
 	f.open(SAVE_PLAYER_ANSWERS, File.READ)
 	for key in player_answers.keys():
 		player_answers[key] = f.get_line()
+	f.close()
 	
 	# Записываем загруженные ответы в поля отчёта
 	var answer_current_number: int = 1
@@ -83,7 +92,7 @@ func load_player_answers() -> void:
 		var answer_key: String = "answer" + str(answer_current_number)
 		question.answer = player_answers[answer_key]
 		answer_current_number += 1
-
+	
 
 # Сохраняем ответы игрока
 func save_player_answers() -> void:
@@ -91,6 +100,27 @@ func save_player_answers() -> void:
 	f.open(SAVE_PLAYER_ANSWERS, File.WRITE)
 	for value in player_answers.values():
 		f.store_line(value)
+	f.close()
+
+
+func save_report_status(score: int) -> void:
+	var f = File.new()
+	f.open(REPORT_SAVE_PATH, File.WRITE)
+	f.store_line(str(score))
+	f.close()
+
+
+func is_report_filled() -> int:
+	var f = File.new()
+	if not f.file_exists(REPORT_SAVE_PATH):
+		f.close()
+		return -1 # файла нет
+	
+	f.open(REPORT_SAVE_PATH)
+	var score := int(f.get_line())
+	f.close()
+	
+	return score
 
 
 # Проверка, впервые ли запускается игра
@@ -112,7 +142,8 @@ func _on_Report_back_pressed():
 	$Chat.mouse_filter = Control.MOUSE_FILTER_STOP
 
 
-func _on_Report_report_filled():
+func _on_Report_report_filled(score: int):
+	save_report_status(score)
 	$Outro.calc_outro($Report.check_correct_answers())
 	$Chat.hide()
 	$Intro.hide()

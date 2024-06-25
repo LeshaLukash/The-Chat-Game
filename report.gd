@@ -5,7 +5,7 @@ const SAVE_PATH := "user://save_data.dat"
 
 signal answer_added(answer_name, answer)
 signal back_pressed
-signal report_filled
+signal report_filled(score)
 
 
 onready var ANSWERS_REQUIRED: int = get_node("%QuestionsList").get_child_count()
@@ -140,7 +140,7 @@ func _on_EndReportButton_pressed():
 
 
 func _on_YesButton_pressed():
-	emit_signal("report_filled")
+	emit_signal("report_filled", check_correct_answers())
 	$WarningPopup.hide()
 	hide()
 
