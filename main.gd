@@ -6,6 +6,8 @@ const SAVE_PLAYER_ANSWERS := "user://save_player_answers.dat"
 const REPORT_SAVE_PATH := "user://report_save.dat"
 
 
+var crime_date: String
+
 # Здесь хранятся ответы игрока
 var player_answers := {
 	answer1 = "",
@@ -25,26 +27,34 @@ func _init():
 
 
 func _ready():
+	# Отключаем реакцию чата и включаем реакцию интро на ввод
 	$Chat.set_process_input(false)
 	$Intro.set_process_input(true)
 	
+	# Проверка, первый ли запуск и была ли игра завершена ранее
 	$Intro.is_first_start = is_first_launch()
-	var score = is_report_filled()
-
+	var score = get_report_score()
+	
 	if not is_first_launch():
 		$Intro/BeginButton.text = "Продолжить"
-	elif score > -1:
+		
+	if score > -1: # Если отчёт был составлен и подтверждён
 		$Intro/BeginButton.text = "Посмотреть итоги"
-		$Intro.is_report_filled = true
-	$Intro.show()
-
-	if not is_report_filled():
+		$Chat.hide()
+		$Outro.show()
+		$Outro.update_outro(score)
+		$Outro.set_progress_bar(score)
+		$Outro.get_node("%ResumeLabel").show()
+		$Outro.get_node("%ReportPercentLabel").show()
+	else: # Отчёта нет - игрок может вернуться к чату
 		load_player_answers()
 		$Report.check_answers_amount()
 		add_crime_date()
 		$Chat/ChatContainer.load_chat()
+	$Intro.show()
 
 
+# Если игрок нажимает на Android кнопку назад
 func _notification(what):
 	if what == NOTIFICATION_WM_GO_BACK_REQUEST and not $Report.visible:
 		get_tree().quit()
@@ -58,13 +68,10 @@ func is_web_mobile() -> bool:
 # Добавить в чат плашку с датой преступления
 func add_crime_date() -> void:
 	var f := File.new()
-	var crime_date: String
 	
 	if is_first_launch():
 		crime_date = $Chat/ChatContainer/DateCalculator.get_crime_date()
 		# warning-ignore:return_value_discarded
-		f.open(SAVE_DATE, File.WRITE)
-		f.store_line(crime_date)
 	else:
 		# warning-ignore:return_value_discarded
 		f.open(SAVE_DATE, File.READ)
@@ -72,6 +79,14 @@ func add_crime_date() -> void:
 	
 	f.close()
 	$Chat/ChatContainer.add_info_panel(crime_date)
+
+
+# Записать на память устройства дату преступления
+func save_crime_date() -> void:
+	var f := File.new()
+	f.open(SAVE_DATE, File.WRITE)
+	f.store_line(crime_date)
+	f.close()
 
 
 # Загружаем сохранённые ответы
@@ -103,6 +118,7 @@ func save_player_answers() -> void:
 	f.close()
 
 
+# Сохраняем оценку игрока за составленный отчёт
 func save_report_status(score: int) -> void:
 	var f = File.new()
 	f.open(REPORT_SAVE_PATH, File.WRITE)
@@ -110,13 +126,15 @@ func save_report_status(score: int) -> void:
 	f.close()
 
 
-func is_report_filled() -> int:
+# Заапрос оценки отчёта игрока. Если -1 - отчёта ещё нет
+# Проверка, был ли заполнен и подтверждён отчёт
+func get_report_score() -> int:
 	var f = File.new()
 	if not f.file_exists(REPORT_SAVE_PATH):
 		f.close()
 		return -1 # файла нет
 	
-	f.open(REPORT_SAVE_PATH)
+	f.open(REPORT_SAVE_PATH, File.READ)
 	var score := int(f.get_line())
 	f.close()
 	
@@ -144,12 +162,17 @@ func _on_Report_back_pressed():
 
 func _on_Report_report_filled(score: int):
 	save_report_status(score)
-	$Outro.calc_outro($Report.check_correct_answers())
 	$Chat.hide()
 	$Intro.hide()
 	$Outro.show()
+	$Outro.update_outro(score)
+	$Outro.animate_outro(score)
 
 
 func _on_Report_answer_added(answer_name, answer):
 	player_answers[answer_name] = answer
 	save_player_answers()
+
+
+func _on_Intro_pressed():
+	save_crime_date()

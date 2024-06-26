@@ -15,16 +15,17 @@ script = ExtResource( 3 )
 
 [node name="Chat" parent="." instance=ExtResource( 2 )]
 
+[node name="Outro" parent="." instance=ExtResource( 6 )]
+visible = false
+
 [node name="Intro" parent="." instance=ExtResource( 4 )]
 
 [node name="Report" parent="." instance=ExtResource( 5 )]
 visible = false
 
-[node name="Outro" parent="." instance=ExtResource( 6 )]
-visible = false
-
 [connection signal="report_pressed" from="Chat" to="." method="_on_Chat_report_pressed"]
 [connection signal="faded" from="Intro" to="." method="_on_Intro_faded"]
+[connection signal="pressed" from="Intro" to="." method="_on_Intro_pressed"]
 [connection signal="answer_added" from="Report" to="." method="_on_Report_answer_added"]
 [connection signal="back_pressed" from="Report" to="." method="_on_Report_back_pressed"]
 [connection signal="report_filled" from="Report" to="." method="_on_Report_report_filled"]
