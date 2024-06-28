@@ -17,83 +17,92 @@ script = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="ReportProgressContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.187
 anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -231.0
-margin_top = -117.0
-margin_right = 231.0
-margin_bottom = 117.0
-custom_constants/separation = 65
-
-[node name="ReportPercentLabel" type="Label" parent="VBoxContainer"]
-unique_name_in_owner = true
-visible = false
-margin_right = 462.0
-margin_bottom = 32.0
-align = 1
-valign = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 97.0
-margin_right = 462.0
-margin_bottom = 137.0
-size_flags_vertical = 6
+anchor_bottom = 0.187
+margin_left = -214.0
+margin_top = 344.64
+margin_right = 214.0
+margin_bottom = 456.64
+custom_constants/separation = 40
 alignment = 1
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": true
+}
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
-margin_right = 50.0
-margin_bottom = 40.0
-custom_constants/margin_right = 50
-
-[node name="ReportProgressBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer"]
+[node name="ReportPercentLabel" type="Label" parent="ReportProgressContainer"]
 unique_name_in_owner = true
-margin_left = 54.0
-margin_right = 408.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 0, 40 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource( 2 )
-step = 1.0
-percent_visible = false
-
-[node name="Tween" type="Tween" parent="VBoxContainer/HBoxContainer/ReportProgressBar"]
-
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
-margin_left = 412.0
-margin_right = 462.0
-margin_bottom = 40.0
-custom_constants/margin_right = 50
-
-[node name="ResumeLabel" type="Label" parent="VBoxContainer"]
-unique_name_in_owner = true
-visible = false
-margin_top = 202.0
-margin_right = 462.0
-margin_bottom = 234.0
-size_flags_vertical = 10
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 87.0
+margin_right = 340.0
+margin_bottom = 32.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Отчёт верен на 0%"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Tween" type="Tween" parent="ReportProgressContainer/ReportPercentLabel"]
+
+[node name="ReportProgressBar" type="ProgressBar" parent="ReportProgressContainer"]
+unique_name_in_owner = true
+margin_top = 72.0
+margin_right = 428.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 0, 40 )
+size_flags_vertical = 10
+theme = ExtResource( 2 )
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Tween" type="Tween" parent="ReportProgressContainer/ReportProgressBar"]
+
+[node name="Tween" type="Tween" parent="ReportProgressContainer"]
+
+[node name="ResumeLabel" type="Label" parent="."]
+unique_name_in_owner = true
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.105556
+anchor_top = 0.26875
+anchor_right = 0.894444
+anchor_bottom = 0.894531
+text = "Текст итога"
+align = 3
 autowrap = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Tween" type="Tween" parent="ResumeLabel"]
 
 [node name="Credits" type="Label" parent="."]
-anchor_left = 0.0319444
-anchor_top = 0.996094
-anchor_right = 0.0319444
-anchor_bottom = 0.989844
-margin_left = 17.0
-margin_top = -87.0
-margin_right = 533.0
-margin_bottom = -20.0
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.0638889
+anchor_top = 0.9125
+anchor_right = 0.511111
+anchor_bottom = 0.958594
+margin_right = -3.05176e-05
 custom_fonts/font = SubResource( 1 )
-text = "Автор игры: Lesha Lukash
+text = "Автор игры: Лёша Лукаш
 Автор сценария: ThatRedSpy"
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[connection signal="tween_completed" from="VBoxContainer/HBoxContainer/ReportProgressBar/Tween" to="." method="_on_Tween_tween_completed"]
+[node name="Tween" type="Tween" parent="Credits"]
+
+[connection signal="tween_completed" from="ReportProgressContainer/ReportProgressBar/Tween" to="." method="_on_ReportProgressBar_tween_completed"]
+[connection signal="tween_completed" from="ReportProgressContainer/Tween" to="." method="_on_ReportProgressContainer_tween_completed"]
+[connection signal="tween_completed" from="ResumeLabel/Tween" to="." method="_on_ResumeLabel_tween_completed"]

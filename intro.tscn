@@ -39,7 +39,7 @@ func _on_BeginButton_pressed():
 		$IntroTextLabel.show()
 		$ContinueButton.show()
 		$BeginButton.hide()
-		$LogoLabel.hide()
+		$LogoContainer.hide()
 	else:
 		_on_ContinueButton_pressed()
 "
@@ -111,20 +111,33 @@ icon_align = 1
 
 [node name="Tween" type="Tween" parent="."]
 
-[node name="LogoLabel" type="Label" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -219.0
-margin_top = -95.5
-margin_right = 219.0
-margin_bottom = 95.5
+[node name="LogoContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.191667
+anchor_top = 0.405469
+anchor_right = 0.808333
+anchor_bottom = 0.595312
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="LogoLabel" type="Label" parent="LogoContainer"]
+margin_right = 444.0
+margin_bottom = 191.0
 custom_fonts/font = ExtResource( 2 )
 text = "A Short Chat
 Investigation"
+align = 1
 valign = 1
 autowrap = true
+
+[node name="AuthorLabel" type="Label" parent="LogoContainer"]
+margin_top = 211.0
+margin_right = 444.0
+margin_bottom = 243.0
+text = "Автор игры - Лёша Лукаш"
+align = 1
+valign = 3
 
 [node name="BeginButton" type="Button" parent="."]
 anchor_top = 0.777

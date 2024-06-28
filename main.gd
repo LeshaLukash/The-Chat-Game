@@ -43,7 +43,7 @@ func _ready():
 		$Chat.hide()
 		$Outro.show()
 		$Outro.update_outro(score)
-		$Outro.set_progress_bar(score)
+		$Outro.show_outro_immeditely(score)
 		$Outro.get_node("%ResumeLabel").show()
 		$Outro.get_node("%ReportPercentLabel").show()
 	else: # Отчёта нет - игрок может вернуться к чату
