@@ -27,4 +27,6 @@ margin_right = 720.0
 margin_bottom = 102.0
 rect_min_size = Vector2( 0, 20 )
 
+[connection signal="focus_entered" from="Answer" to="." method="_on_Answer_focus_entered"]
+[connection signal="focus_exited" from="Answer" to="." method="_on_Answer_focus_exited"]
 [connection signal="text_changed" from="Answer" to="." method="_on_Answer_text_changed"]

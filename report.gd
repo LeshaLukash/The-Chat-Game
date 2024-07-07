@@ -1,5 +1,6 @@
 extends Control
 
+
 const SAVE_PATH := "user://save_data.dat"
 
 
@@ -9,6 +10,9 @@ signal report_filled(score)
 
 
 onready var ANSWERS_REQUIRED: int = get_node("%QuestionsList").get_child_count()
+var biased := false
+var bias := 0
+var question_selected := false
 
 
 # Словарь с правильными ответами
@@ -22,25 +26,27 @@ var correct_answers := {
 }
 
 
-func does_save_exist() -> bool:
-	var f = File.new()
-	return f.file_exists(SAVE_PATH)
+func _process(_delta):
+	if not is_virtual_keyboard_visible() and biased:
+		biased = false
+		rect_global_position.y = 0
+		set_process(false)
+
+
+func is_virtual_keyboard_visible() -> bool:
+	return OS.get_virtual_keyboard_height() > 0
 
 
 # Отслеживание нажатия кнопки "Назад" на Android
 func _notification(what):
 	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		print("lel")
 		_on_BackButton_pressed()
 
 
 func _input(_event):
 	if Input.is_action_just_pressed("ui_cancel"):
 		hide()
-
-
-func _on_BackButton_pressed():
-	hide()
-	emit_signal("back_pressed")
 
 
 # Подсчитываем кол-во данных ответов
@@ -56,6 +62,11 @@ func check_answers_amount() -> void:
 				questions[i + 1].show()
 	
 	get_node("%EndReportButton").visible = (ANSWERS_REQUIRED == answers_given)
+
+
+func does_save_exist() -> bool:
+	var f = File.new()
+	return f.file_exists(SAVE_PATH)
 
 
 func check_correct_answers() -> int:
@@ -88,6 +99,11 @@ func check_correct_answers() -> int:
 					result += 30
 	print("Ваш результат: " + str(result))
 	return result
+
+
+func _on_BackButton_pressed():
+	hide()
+	emit_signal("back_pressed")
 
 
 func _on_QuestionField1_answer_added():
@@ -138,7 +154,6 @@ func _on_EndReportButton_pressed():
 	$HeaderPanelContainer.hide()
 
 
-
 func _on_YesButton_pressed():
 	emit_signal("report_filled", check_correct_answers())
 	$WarningPopup.hide()
@@ -149,3 +164,18 @@ func _on_GoBackButton_pressed():
 	$WarningPopup.hide()
 	$ReportContainer.show()
 	$HeaderPanelContainer.show()
+
+
+func _on_QuestionField_selected():
+	question_selected = true
+	
+	
+func _on_QuestionField_hided_by_keyboard(screen_bias):
+	bias = screen_bias
+	rect_global_position.y += bias
+	biased = true
+	set_process(true)
+
+
+func _on_QuestionField_deselected():
+	question_selected = false

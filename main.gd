@@ -152,12 +152,14 @@ func _on_Intro_faded():
 
 
 func _on_Chat_report_pressed():
+	$Chat.hide()
 	$Chat.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	$Report.show()
 
 
 func _on_Report_back_pressed():
 	$Chat.mouse_filter = Control.MOUSE_FILTER_STOP
+	$Chat.show()
 
 
 func _on_Report_report_filled(score: int):
