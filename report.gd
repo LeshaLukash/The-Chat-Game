@@ -9,10 +9,9 @@ signal back_pressed
 signal report_filled(score)
 
 
-onready var ANSWERS_REQUIRED: int = get_node("%QuestionsList").get_child_count()
-var biased := false
-var bias := 0
-var question_selected := false
+onready var ANSWERS_REQUIRED: int = get_node("%QuestionsList").get_child_count() # Кол-во ответов, которые должен дать игрок
+var bias := 0					# Величина сдвига отчёта вверх
+var question_selected := false	# Выделено ли поле ввода ответа
 
 
 # Словарь с правильными ответами
@@ -27,20 +26,17 @@ var correct_answers := {
 
 
 func _process(_delta):
-	if not is_virtual_keyboard_visible() and biased:
-		biased = false
-		rect_global_position.y = 0
-		set_process(false)
+	pass
 
 
 func is_virtual_keyboard_visible() -> bool:
+	# Если высота экранной клавитуры больше 0 - она видна
 	return OS.get_virtual_keyboard_height() > 0
 
 
 # Отслеживание нажатия кнопки "Назад" на Android
 func _notification(what):
 	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
-		print("lel")
 		_on_BackButton_pressed()
 
 
@@ -167,15 +163,15 @@ func _on_GoBackButton_pressed():
 
 
 func _on_QuestionField_selected():
+	print("question field selected")
 	question_selected = true
 	
 	
 func _on_QuestionField_hided_by_keyboard(screen_bias):
+	print("seleted question field is hidden!")
 	bias = screen_bias
-	rect_global_position.y += bias
-	biased = true
-	set_process(true)
 
 
 func _on_QuestionField_deselected():
+	print("question field deselected")
 	question_selected = false

@@ -216,6 +216,7 @@ flat = true
 [connection signal="answer_added" from="ReportContainer/ScrollContainer/QuestionsList/QuestionField5" to="." method="_on_QuestionField5_answer_added"]
 [connection signal="deselected" from="ReportContainer/ScrollContainer/QuestionsList/QuestionField5" to="." method="_on_QuestionField_deselected"]
 [connection signal="hided_by_keyboard" from="ReportContainer/ScrollContainer/QuestionsList/QuestionField5" to="." method="_on_QuestionField_hided_by_keyboard"]
+[connection signal="selected" from="ReportContainer/ScrollContainer/QuestionsList/QuestionField5" to="." method="_on_QuestionField_selected"]
 [connection signal="answer_added" from="ReportContainer/ScrollContainer/QuestionsList/QuestionField6" to="." method="_on_QuestionField6_answer_added"]
 [connection signal="deselected" from="ReportContainer/ScrollContainer/QuestionsList/QuestionField6" to="." method="_on_QuestionField_deselected"]
 [connection signal="hided_by_keyboard" from="ReportContainer/ScrollContainer/QuestionsList/QuestionField6" to="." method="_on_QuestionField_hided_by_keyboard"]
