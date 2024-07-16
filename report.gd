@@ -8,11 +8,8 @@ signal answer_added(answer_name, answer)
 signal back_pressed
 signal report_filled(score)
 
-
+onready var screen_size: Vector2 = OS.get_screen_size()
 onready var ANSWERS_REQUIRED: int = get_node("%QuestionsList").get_child_count() # Кол-во ответов, которые должен дать игрок
-var bias := 0					# Величина сдвига отчёта вверх
-var question_selected := false	# Выделено ли поле ввода ответа
-
 
 # Словарь с правильными ответами
 var correct_answers := {
@@ -24,9 +21,16 @@ var correct_answers := {
 	answer6 = ["финнеа34", "финеа34", "финнеа,34", "финеа,34", "финнеа 34", "финеа 34", "финеа, 34", "финнеа, 34"]
 }
 
+# Выделенное поле ответа
+var current_question_selected: VBoxContainer = null
+
 
 func _process(_delta):
-	pass
+	if is_virtual_keyboard_visible() and current_question_selected != null:
+		var answer_origin: Vector2 = current_question_selected.get_global_transform_with_canvas().get_origin()
+		print("game size: %s, screen_size: %s, keyboard height: %d, answer_origin: %s" %[str(get_tree().get_root().size), str(screen_size), OS.get_virtual_keyboard_height(), str(answer_origin)])
+	else:
+		rect_global_position.y = 0
 
 
 func is_virtual_keyboard_visible() -> bool:
@@ -162,16 +166,10 @@ func _on_GoBackButton_pressed():
 	$HeaderPanelContainer.show()
 
 
-func _on_QuestionField_selected():
-	print("question field selected")
-	question_selected = true
-	
-	
-func _on_QuestionField_hided_by_keyboard(screen_bias):
-	print("seleted question field is hidden!")
-	bias = screen_bias
+func _on_QuestionField_selected(field_name: String):
+	# Получаем текущее выделенное поле ввода
+	current_question_selected = get_node("%%%s" %field_name)
 
 
-func _on_QuestionField_deselected():
-	print("question field deselected")
-	question_selected = false
+func _on_QuestionField_deselected(_field_name: String):
+	current_question_selected = null
