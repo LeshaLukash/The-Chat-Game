@@ -11,7 +11,7 @@ signal report_filled(score)
 
 
 onready var game_screen_size: Vector2 = get_tree().get_root().size					# Размер экрана с игрой!
-onready var ANSWERS_REQUIRED: int = get_node("%QuestionsList").get_child_count()	# Кол-во ответов, которые должен дать игрок
+onready var ANSWERS_REQUIRED: int = 6	# Кол-во ответов, которые должен дать игрок
 onready var os_name: String = OS.get_name()
 
 
@@ -74,7 +74,7 @@ func check_answers_amount() -> void:
 	var questions = get_node("%QuestionsList").get_children()
 	
 	for i in questions.size():
-		if not questions[i].answer.empty():
+		if not questions[i].get_node("Answer").text.empty():
 			answers_given += 1
 			questions[i].show()
 			if i != questions.size() - 1:
@@ -91,30 +91,31 @@ func does_save_exist() -> bool:
 func check_correct_answers() -> int:
 	var result := 0
 	for question in get_node("%QuestionsList").get_children():
-		print(question.answer + "\n")
+		var answer = question.get_node("Answer").text
+
 		match question.name:
 			"QuestionField1":
-				if question.answer.to_lower() == correct_answers["answer1"]:
+				if answer.to_lower() == correct_answers["answer1"]:
 					result += 1
 			"QuestionField2":
-				var answer_int := int(question.answer)
-				var answer_str: String = question.answer.to_lower()
+				var answer_int := int(answer)
+				var answer_str: String = answer.to_lower()
 				if correct_answers["answer2"].has(answer_int) or\
 					correct_answers["answer2"].has(answer_str):
 						result += 9
 			"QuestionField3":
-				if question.answer.to_lower() == correct_answers["answer3"]:
+				if answer.to_lower() == correct_answers["answer3"]:
 					result += 15
 			"QuestionField4":
-				if question.answer.to_lower() == correct_answers["answer4"]:
+				if answer.to_lower() == correct_answers["answer4"]:
 					result += 22
 			"QuestionField5":
-				var answer: String = question.answer.to_lower().lstrip("улица.,").dedent()
-				if correct_answers["answer5"].has(answer):
+				var answer_formatted: String = answer.to_lower().lstrip("улица.,").dedent()
+				if correct_answers["answer5"].has(answer_formatted):
 					result += 23
 			"QuestionField6":
-				var answer: String = question.answer.to_lower().lstrip("улица,.").dedent()
-				if correct_answers["answer6"].has(answer):
+				var answer_formatted: String = answer.to_lower().lstrip("улица,.").dedent()
+				if correct_answers["answer6"].has(answer_formatted):
 					result += 30
 	print("Ваш результат: " + str(result))
 	return result
@@ -126,43 +127,49 @@ func _on_BackButton_pressed():
 
 
 func _on_QuestionField1_answer_added():
-	var question = get_node("%QuestionField1")
+	var question: VBoxContainer = get_node("%QuestionField1")
+	var answer: String = question.get_node("Answer").text
 	get_node("%QuestionField2").show()
-	emit_signal("answer_added", "answer1", question.answer)
+	emit_signal("answer_added", "answer1", answer)
 	check_answers_amount()
 
 
 func _on_QuestionField2_answer_added():
 	var question = get_node("%QuestionField2")
+	var answer: String = question.get_node("Answer").text
 	get_node("%QuestionField3").show()
-	emit_signal("answer_added", "answer2", question.answer)
+	emit_signal("answer_added", "answer2", answer)
 	check_answers_amount()
 
 
 func _on_QuestionField3_answer_added():
 	var question = get_node("%QuestionField3")
+	var answer: String = question.get_node("Answer").text
 	get_node("%QuestionField4").show()
-	emit_signal("answer_added", "answer3", question.answer)
+	emit_signal("answer_added", "answer3", answer)
 	check_answers_amount()
 
 
 func _on_QuestionField4_answer_added():
 	var question = get_node("%QuestionField4")
+	var answer: String = question.get_node("Answer").text
 	get_node("%QuestionField5").show()
-	emit_signal("answer_added", "answer4", question.answer)
+	emit_signal("answer_added", "answer4", answer)
 	check_answers_amount()
 
 
 func _on_QuestionField5_answer_added():
 	var question = get_node("%QuestionField5")
+	var answer: String = question.get_node("Answer").text
 	get_node("%QuestionField6").show()
-	emit_signal("answer_added", "answer5", question.answer)
+	emit_signal("answer_added", "answer5", answer)
 	check_answers_amount()
 
 
 func _on_QuestionField6_answer_added():
 	var question = get_node("%QuestionField6")
-	emit_signal("answer_added", "answer6", question.answer)
+	var answer: String = question.get_node("Answer").text
+	emit_signal("answer_added", "answer6", answer)
 	check_answers_amount()
 
 
