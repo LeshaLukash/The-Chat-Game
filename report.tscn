@@ -74,7 +74,7 @@ size_flags_vertical = 3
 [node name="QuestionsList" type="VBoxContainer" parent="ReportContainer/ScrollContainer"]
 unique_name_in_owner = true
 margin_right = 562.0
-margin_bottom = 807.0
+margin_bottom = 102.0
 size_flags_horizontal = 3
 
 [node name="QuestionField1" parent="ReportContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
@@ -87,6 +87,7 @@ question_text = "Как назвается чат, который вы изуч�
 
 [node name="QuestionField2" parent="ReportContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
 unique_name_in_owner = true
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 106.0
@@ -97,6 +98,7 @@ question_text = "Сколько человек было в чате на
 
 [node name="QuestionField3" parent="ReportContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
 unique_name_in_owner = true
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 247.0
@@ -107,6 +109,7 @@ question_text = "Назовите никнейм первого погибшег
 
 [node name="QuestionField4" parent="ReportContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
 unique_name_in_owner = true
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 388.0
@@ -117,6 +120,7 @@ question_text = "Как зовут игрока, убившего жертву �
 
 [node name="QuestionField5" parent="ReportContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
 unique_name_in_owner = true
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 529.0
@@ -127,6 +131,7 @@ question_text = "Где проживает игрок, от лица котор�
 
 [node name="QuestionField6" parent="ReportContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
 unique_name_in_owner = true
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 670.0

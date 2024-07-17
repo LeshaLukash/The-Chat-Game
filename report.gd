@@ -2,14 +2,18 @@ extends Control
 
 
 const SAVE_PATH := "user://save_data.dat"
+const VIRTUAL_KEYBOARD_CONST := 100
 
 
 signal answer_added(answer_name, answer)
 signal back_pressed
 signal report_filled(score)
 
-onready var screen_size: Vector2 = OS.get_screen_size()
-onready var ANSWERS_REQUIRED: int = get_node("%QuestionsList").get_child_count() # Кол-во ответов, которые должен дать игрок
+
+onready var game_screen_size: Vector2 = get_tree().get_root().size					# Размер экрана с игрой!
+onready var ANSWERS_REQUIRED: int = get_node("%QuestionsList").get_child_count()	# Кол-во ответов, которые должен дать игрок
+onready var os_name: String = OS.get_name()
+
 
 # Словарь с правильными ответами
 var correct_answers := {
@@ -25,12 +29,27 @@ var correct_answers := {
 var current_question_selected: VBoxContainer = null
 
 
+# Проверяем на мобильных устройствах 
+# высоту мобильной клавиатуры
+# и сравниваем её с координатами выделенного поля ввода ответа
+# если разница мала - то вероятно, клавиатура перекрывает поля ввода
+# тогда сдвигаем экран вверх на разницу между высотой вопроса и размером экрана, не занятого клавиатурой!
 func _process(_delta):
-	if is_virtual_keyboard_visible() and current_question_selected != null:
-		var answer_origin: Vector2 = current_question_selected.get_global_transform_with_canvas().get_origin()
-		print("game size: %s, screen_size: %s, keyboard height: %d, answer_origin: %s" %[str(get_tree().get_root().size), str(screen_size), OS.get_virtual_keyboard_height(), str(answer_origin)])
-	else:
-		rect_global_position.y = 0
+	if os_name == "Android" or os_name == "iOS":
+		if is_virtual_keyboard_visible() and current_question_selected != null:
+			var free_screen_space := int(game_screen_size.y - OS.get_virtual_keyboard_height())
+			var answer_screen_pos: Vector2 = get_viewport_transform().xform_inv(current_question_selected.get_node("Answer").rect_global_position)
+			var screen_bias := int(free_screen_space - answer_screen_pos.y)
+			
+			# У виртуальных клавиатур бывают приблуды и панели, 
+			# которые, видимо, годот не учитывает при подсчёте высоты клавиатуры
+			# поэтому разница между положением поля ввода и пространством,
+			# не занятым виртуальной клавиатурой, берётся с небольшим запасом
+			if screen_bias < VIRTUAL_KEYBOARD_CONST and rect_global_position.y == 0:
+				# в некоторых случаях screen_bias бывает отрицательным, поэтому берём по модулю
+				rect_global_position.y -= abs(screen_bias) + VIRTUAL_KEYBOARD_CONST
+		else:
+			rect_global_position.y = 0
 
 
 func is_virtual_keyboard_visible() -> bool:
