@@ -20,6 +20,10 @@ func _process(_delta):
 		emit_signal("answer_added")
 
 
+func add_answer(answer: String) -> void:
+	$Answer.text = answer
+
+
 func _on_Answer_text_changed(_new_text):
 	emit_signal("answer_added")
 

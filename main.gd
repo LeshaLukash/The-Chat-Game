@@ -105,7 +105,7 @@ func load_player_answers() -> void:
 	var answer_current_number: int = 1
 	for question in $Report.get_node("%QuestionsList").get_children():
 		var answer_key: String = "answer" + str(answer_current_number)
-		question.answer = player_answers[answer_key]
+		question.add_answer(player_answers[answer_key])
 		answer_current_number += 1
 	
 

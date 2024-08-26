@@ -23,18 +23,17 @@ __meta__ = {
 
 [node name="ReportProgressContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
-anchor_top = 0.187
+anchor_top = 0.11
 anchor_right = 0.5
-anchor_bottom = 0.187
+anchor_bottom = 0.11
 margin_left = -214.0
-margin_top = 344.64
+margin_top = 443.2
 margin_right = 214.0
-margin_bottom = 456.64
+margin_bottom = 555.2
 custom_constants/separation = 40
 alignment = 1
 __meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": true
+"_edit_group_": true
 }
 
 [node name="ReportPercentLabel" type="Label" parent="ReportProgressContainer"]
@@ -71,13 +70,23 @@ __meta__ = {
 
 [node name="Tween" type="Tween" parent="ReportProgressContainer"]
 
-[node name="ResumeLabel" type="Label" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchor_left = 0.0680556
+anchor_top = 0.185937
+anchor_right = 0.931944
+anchor_bottom = 0.910937
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ResumeLabel" type="Label" parent="ScrollContainer"]
 unique_name_in_owner = true
 self_modulate = Color( 1, 1, 1, 0 )
-anchor_left = 0.105556
-anchor_top = 0.26875
-anchor_right = 0.894444
-anchor_bottom = 0.894531
+margin_right = 622.0
+margin_bottom = 928.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 text = "Текст итога"
 align = 3
 autowrap = true
@@ -85,14 +94,14 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Tween" type="Tween" parent="ResumeLabel"]
+[node name="Tween" type="Tween" parent="ScrollContainer/ResumeLabel"]
 
 [node name="Credits" type="Label" parent="."]
 self_modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.0638889
-anchor_top = 0.9125
+anchor_top = 0.932031
 anchor_right = 0.511111
-anchor_bottom = 0.958594
+anchor_bottom = 0.978125
 margin_right = -3.05176e-05
 custom_fonts/font = SubResource( 1 )
 text = "Автор игры: Лёша Лукаш
@@ -103,6 +112,21 @@ __meta__ = {
 
 [node name="Tween" type="Tween" parent="Credits"]
 
+[node name="ExitGameButton" type="Button" parent="."]
+visible = false
+anchor_left = 0.497222
+anchor_top = 0.921094
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 0
+text = "ЗАКРЫТЬ ИГРУ"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
 [connection signal="tween_completed" from="ReportProgressContainer/ReportProgressBar/Tween" to="." method="_on_ReportProgressBar_tween_completed"]
 [connection signal="tween_completed" from="ReportProgressContainer/Tween" to="." method="_on_ReportProgressContainer_tween_completed"]
-[connection signal="tween_completed" from="ResumeLabel/Tween" to="." method="_on_ResumeLabel_tween_completed"]
+[connection signal="tween_completed" from="ScrollContainer/ResumeLabel/Tween" to="." method="_on_ResumeLabel_tween_completed"]
+[connection signal="tween_completed" from="Credits/Tween" to="." method="_on_Credits_tween_completed"]
+[connection signal="pressed" from="ExitGameButton" to="." method="_on_ExitGameButton_pressed"]

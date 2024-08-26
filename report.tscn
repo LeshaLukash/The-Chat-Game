@@ -61,7 +61,7 @@ custom_constants/separation = 80
 margin_right = 562.0
 margin_bottom = 67.0
 size_flags_horizontal = 3
-text = "Внимательно изучите переписку и заполните анкету ниже:"
+text = "Внимательно изучите переписку и ответьте на вопросы ниже:"
 align = 1
 autowrap = true
 
@@ -70,6 +70,7 @@ margin_top = 147.0
 margin_right = 562.0
 margin_bottom = 1102.0
 size_flags_vertical = 3
+scroll_horizontal_enabled = false
 
 [node name="QuestionsList" type="VBoxContainer" parent="ReportContainer/ScrollContainer"]
 unique_name_in_owner = true
@@ -115,8 +116,8 @@ anchor_bottom = 0.0
 margin_top = 388.0
 margin_right = 562.0
 margin_bottom = 525.0
-question_text = "Как зовут игрока, убившего жертву из
-предыдущего вопроса?"
+question_text = "Укажите настоящее имя игрока,
+убившего жертву из предыдущего вопроса"
 
 [node name="QuestionField5" parent="ReportContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
 unique_name_in_owner = true
