@@ -114,8 +114,8 @@ __meta__ = {
 
 [node name="ExitGameButton" type="Button" parent="."]
 visible = false
-anchor_left = 0.497222
-anchor_top = 0.921094
+anchor_left = 0.515278
+anchor_top = 0.910937
 anchor_right = 1.0
 anchor_bottom = 1.0
 focus_mode = 0
@@ -125,8 +125,11 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
+[node name="Timer" type="Timer" parent="ExitGameButton"]
+
 [connection signal="tween_completed" from="ReportProgressContainer/ReportProgressBar/Tween" to="." method="_on_ReportProgressBar_tween_completed"]
 [connection signal="tween_completed" from="ReportProgressContainer/Tween" to="." method="_on_ReportProgressContainer_tween_completed"]
 [connection signal="tween_completed" from="ScrollContainer/ResumeLabel/Tween" to="." method="_on_ResumeLabel_tween_completed"]
 [connection signal="tween_completed" from="Credits/Tween" to="." method="_on_Credits_tween_completed"]
 [connection signal="pressed" from="ExitGameButton" to="." method="_on_ExitGameButton_pressed"]
+[connection signal="timeout" from="ExitGameButton/Timer" to="." method="_on_ExitGameButton_Timer_timeout"]

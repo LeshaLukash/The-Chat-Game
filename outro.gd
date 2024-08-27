@@ -29,6 +29,7 @@ func show_outro_immeditely(score := 0) -> void:
 	ResumeLabel.self_modulate.a = 1
 	$Credits.self_modulate.a = 1
 	$ExitGameButton.show()
+	$ExitGameButton/Timer.start(1.0)
 
 
 func get_resume(score: int = 0) -> String:
@@ -76,7 +77,16 @@ func _on_ResumeLabel_tween_completed(_object, _key):
 func _on_Credits_tween_completed(object, key):
 	yield(get_tree().create_timer(2.0), "timeout")
 	$ExitGameButton.show()
+	$ExitGameButton/Timer.start(1.0)
 
 
 func _on_ExitGameButton_pressed():
 	get_tree().quit()
+
+
+func _on_ExitGameButton_Timer_timeout():
+	if $ExitGameButton.self_modulate.a >= 1:
+		$ExitGameButton.self_modulate.a = 0
+	else:
+		$ExitGameButton.self_modulate.a = 1
+	$ExitGameButton/Timer.start(1.0)
