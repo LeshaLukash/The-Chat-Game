@@ -142,7 +142,6 @@ func set_show_avatar(value: bool):
 
 #################### СИГНАЛЫ ####################
 func _on_Avatar_pressed():
-	print("Аватарка отправителя была нажата")
 	emit_signal("avatar_pressed")
 
 
