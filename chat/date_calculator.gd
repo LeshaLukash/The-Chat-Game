@@ -7,6 +7,9 @@ const month_names_rus := [
 		"июля", "августа", "сентября",
 		"октября", "ноября", "декабря"
 		]
+const month_names_eng := [
+	"January", "February", "March", "April", "May", "June",
+	"July", "August", "September", "October", "November", "December"]
 const month_length := [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 
@@ -39,8 +42,14 @@ func get_crime_date() -> String:
 		year_crime = year_current
 	
 	var month_name: String = month_names_rus[month_crime - 1]
+	if false:
+		month_name = month_names_eng[month_crime - 1]
 	
-	return str(day_crime) + " " + month_name + " " + str(year_crime)
+	var result = str(day_crime) + " " + month_name + " " + str(year_crime)
+	if false:
+		result = month_name + " " + str(day_crime) + ", " + str(year_crime)
+	
+	return result
 
 
 # Определяем, вискосый ли год

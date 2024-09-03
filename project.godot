@@ -55,6 +55,7 @@ pointing/emulate_touch_from_mouse.Android=true
 
 [locale]
 
+test="en"
 locale_filter=[ 1, [ "en", "ru" ] ]
 translation_remaps={
 }

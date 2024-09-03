@@ -33,7 +33,8 @@ margin_bottom = 555.2
 custom_constants/separation = 40
 alignment = 1
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_lock_": true
 }
 
 [node name="ReportPercentLabel" type="Label" parent="ReportProgressContainer"]
@@ -77,6 +78,7 @@ anchor_right = 0.931944
 anchor_bottom = 0.910937
 scroll_horizontal_enabled = false
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": true
 }
 

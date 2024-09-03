@@ -84,7 +84,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 562.0
 margin_bottom = 102.0
-question_text = "Как назвается чат, который вы изучаете?"
+question_text = "Как называется чат, который вы изучаете?"
 
 [node name="QuestionField2" parent="ReportContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
 unique_name_in_owner = true
@@ -95,7 +95,7 @@ margin_top = 106.0
 margin_right = 562.0
 margin_bottom = 243.0
 question_text = "Сколько человек было в чате на 
-момент начала игры?"
+момент начала \"игры\"?"
 
 [node name="QuestionField3" parent="ReportContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
 unique_name_in_owner = true
