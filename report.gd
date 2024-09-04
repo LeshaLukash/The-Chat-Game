@@ -95,7 +95,7 @@ func check_correct_answers() -> int:
 
 		match question.name:
 			"QuestionField1":
-				if answer.to_lower() == correct_answers["answer1"]:
+				if correct_answers["answer1"].has(answer.to_lower()):
 					result += 1
 			"QuestionField2":
 				var answer_int := int(answer)
@@ -107,7 +107,7 @@ func check_correct_answers() -> int:
 				if answer.to_lower() == correct_answers["answer3"]:
 					result += 15
 			"QuestionField4":
-				if answer.to_lower() == correct_answers["answer4"]:
+				if correct_answers["answer4"].has(answer.to_lower()):
 					result += 22
 			"QuestionField5":
 				var answer_formatted: String = answer.to_lower().lstrip("улица.,").dedent()

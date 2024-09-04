@@ -163,6 +163,10 @@ func _on_Report_back_pressed():
 
 
 func _on_Report_report_filled(score: int):
+	$Report.disconnect("visibility_changed", self, "_on_Report_visibility_changed")
+	$Report/AudioBackground/Tween.interpolate_property($Report/AudioBackground, "volume_db",
+			$Report/AudioBackground.volume_db, -20, 5.0, Tween.TRANS_QUINT, Tween.EASE_IN)
+	$Report/AudioBackground/Tween.start()
 	save_report_status(score)
 	$Chat.hide()
 	$Intro.hide()
@@ -178,3 +182,16 @@ func _on_Report_answer_added(answer_name, answer):
 
 func _on_Intro_pressed():
 	save_crime_date()
+
+
+func _on_Report_visibility_changed():
+	if $Report.visible:
+		randomize()
+		var play_pos: float = rand_range(0.0, 50.0)
+		$Report/AudioBackground.play(play_pos)
+	else:
+		$Report/AudioBackground.stop()
+
+
+func _on_Tween_tween_all_completed():
+	$Report/AudioBackground.stop()

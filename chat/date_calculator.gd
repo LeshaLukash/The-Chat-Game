@@ -41,12 +41,16 @@ func get_crime_date() -> String:
 		month_crime = month_current
 		year_crime = year_current
 	
-	var month_name: String = month_names_rus[month_crime - 1]
-	if false:
+	var month_name: String
+	if TranslationServer.get_locale() == "ru":
+		month_name = month_names_rus[month_crime - 1]
+	else:
 		month_name = month_names_eng[month_crime - 1]
 	
-	var result = str(day_crime) + " " + month_name + " " + str(year_crime)
-	if false:
+	var result: String
+	if TranslationServer.get_locale() == "ru":
+		result = str(day_crime) + " " + month_name + " " + str(year_crime)
+	else:
 		result = month_name + " " + str(day_crime) + ", " + str(year_crime)
 	
 	return result
