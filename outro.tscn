@@ -40,12 +40,12 @@ __meta__ = {
 [node name="ReportPercentLabel" type="Label" parent="ReportProgressContainer"]
 unique_name_in_owner = true
 self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 87.0
-margin_right = 340.0
+margin_left = 117.0
+margin_right = 311.0
 margin_bottom = 32.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
-text = "Отчёт верен на 0%"
+text = "Оценка отчёта"
 align = 1
 valign = 1
 __meta__ = {

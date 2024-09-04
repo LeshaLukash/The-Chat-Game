@@ -6,6 +6,11 @@ onready var ReportProgressBarTween: Tween = get_node("%ReportProgressBar/Tween")
 onready var ReportProgressBar: ProgressBar = get_node("%ReportProgressBar")
 
 
+func _ready():
+	update_outro(14)
+	show_outro_immeditely(14)
+
+
 # Запускает цепочку анимаций экрана итогов
 func animate_outro(score: int) -> void:
 	# warning-ignore:return_value_discarded
@@ -15,7 +20,15 @@ func animate_outro(score: int) -> void:
 
 
 func update_outro(score: int) -> void:
-	ReportPercentLabel.text = "Ваш отчёт оказался верен на %d %%." %score
+	var result_degree: String = TranslationServer.translate("REPORT_PERCENT_DESCRIPTION")
+	var score_str: String = "%d%%" %score
+	if TranslationServer.get_locale() == "en":
+		result_degree = result_degree.insert(15, " " + score_str)
+		ReportPercentLabel.text = result_degree
+	else:
+		ReportPercentLabel.text = result_degree + " " + score_str + "."
+	
+	print(result_degree)
 	ResumeLabel.text = get_resume(score)
 
 
