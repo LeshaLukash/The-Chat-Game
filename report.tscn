@@ -59,14 +59,14 @@ custom_constants/separation = 80
 
 [node name="DescriptionLabel" type="Label" parent="ReportContainer"]
 margin_right = 562.0
-margin_bottom = 67.0
+margin_bottom = 32.0
 size_flags_horizontal = 3
-text = "Внимательно изучите переписку и ответьте на вопросы ниже:"
+text = "REPORT_DESCRIPTION_LABEL"
 align = 1
 autowrap = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ReportContainer"]
-margin_top = 147.0
+margin_top = 112.0
 margin_right = 562.0
 margin_bottom = 1102.0
 size_flags_vertical = 3
@@ -84,7 +84,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 562.0
 margin_bottom = 102.0
-question_text = "Как называется чат, который вы изучаете?"
+question_text = "QUESTION_ONE"
 
 [node name="QuestionField2" parent="ReportContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
 unique_name_in_owner = true
@@ -93,53 +93,48 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 106.0
 margin_right = 562.0
-margin_bottom = 243.0
-question_text = "Сколько человек было в чате на 
-момент начала \"игры\"?"
+margin_bottom = 208.0
+question_text = "QUESTION_TWO"
 
 [node name="QuestionField3" parent="ReportContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
 unique_name_in_owner = true
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 247.0
+margin_top = 212.0
 margin_right = 562.0
-margin_bottom = 384.0
-question_text = "Назовите никнейм первого погибшего
-игрока"
+margin_bottom = 314.0
+question_text = "QUESTION_THREE"
 
 [node name="QuestionField4" parent="ReportContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
 unique_name_in_owner = true
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 388.0
+margin_top = 318.0
 margin_right = 562.0
-margin_bottom = 525.0
-question_text = "Укажите настоящее имя игрока,
-убившего жертву из предыдущего вопроса"
+margin_bottom = 420.0
+question_text = "QUESTION_FOUR"
 
 [node name="QuestionField5" parent="ReportContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
 unique_name_in_owner = true
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 529.0
+margin_top = 424.0
 margin_right = 562.0
-margin_bottom = 666.0
-question_text = "Где проживает игрок, от лица которого вы
-изучаете данный чат?"
+margin_bottom = 526.0
+question_text = "QUESTION_FIVE"
 
 [node name="QuestionField6" parent="ReportContainer/ScrollContainer/QuestionsList" instance=ExtResource( 2 )]
 unique_name_in_owner = true
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 670.0
+margin_top = 530.0
 margin_right = 562.0
-margin_bottom = 807.0
-question_text = "Где проживает игрок, котоый первым
-добрался до игрока \"saxxxy13\"?"
+margin_bottom = 632.0
+question_text = "QUESTION_SIX"
 
 [node name="EndReportButton" type="Button" parent="ReportContainer"]
 unique_name_in_owner = true
@@ -148,7 +143,7 @@ margin_top = 1064.0
 margin_right = 562.0
 margin_bottom = 1102.0
 focus_mode = 0
-text = "Завершить отчёт"
+text = "END_REPORT_BUTTON"
 flat = true
 
 [node name="WarningPopup" type="Popup" parent="."]
@@ -172,34 +167,33 @@ margin_right = 204.5
 margin_bottom = 69.5
 
 [node name="Label" type="Label" parent="WarningPopup/VBoxContainer"]
-margin_right = 408.0
+margin_right = 484.0
 margin_bottom = 32.0
 size_flags_vertical = 2
-text = "Вы уверены?"
+text = "WARNING_LABEL"
 align = 1
 valign = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="WarningPopup/VBoxContainer"]
 margin_top = 100.0
-margin_right = 408.0
+margin_right = 484.0
 margin_bottom = 138.0
 
 [node name="YesButton" type="Button" parent="WarningPopup/VBoxContainer/HBoxContainer"]
-margin_left = 69.0
-margin_right = 116.0
+margin_right = 200.0
 margin_bottom = 38.0
 focus_mode = 0
 size_flags_horizontal = 6
-text = "Да"
+text = "YES_BUTTON"
 flat = true
 
 [node name="GoBackButton" type="Button" parent="WarningPopup/VBoxContainer/HBoxContainer"]
-margin_left = 190.0
-margin_right = 408.0
+margin_left = 204.0
+margin_right = 484.0
 margin_bottom = 38.0
 focus_mode = 0
 size_flags_horizontal = 6
-text = "Перепроверить"
+text = "GO_BACK_BUTTON"
 flat = true
 
 [connection signal="pressed" from="HeaderPanelContainer/BackButton" to="." method="_on_BackButton_pressed"]

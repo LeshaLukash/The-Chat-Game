@@ -68,7 +68,7 @@ margin_top = 204.0
 margin_right = 720.0
 margin_bottom = 254.0
 rect_min_size = Vector2( 0, 50 )
-text = "Вернуться к чату"
+text = "BACK_CHAT_BUTTON"
 
 [node name="MarginContainer3" type="MarginContainer" parent="ColorRect/VBoxContainer"]
 margin_top = 258.0
@@ -92,7 +92,7 @@ margin_right = 720.0
 margin_bottom = 1109.0
 rect_min_size = Vector2( 0, 60 )
 size_flags_stretch_ratio = 2.0
-text = "Составить отчёт"
+text = "MAKE_REPORT_BUTTON"
 
 [node name="ExitButton" type="Button" parent="ColorRect/VBoxContainer"]
 unique_name_in_owner = true
@@ -100,7 +100,7 @@ margin_top = 1113.0
 margin_right = 720.0
 margin_bottom = 1173.0
 rect_min_size = Vector2( 0, 60 )
-text = "Выход"
+text = "EXIT_BUTTON"
 
 [node name="MarginContainer2" type="MarginContainer" parent="ColorRect/VBoxContainer"]
 margin_top = 1177.0

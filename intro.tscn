@@ -16,6 +16,7 @@ var is_first_start := true
 
 func _ready():
 	set_process_input(false)
+	$IntroTextLabel.bbcode_text = TranslationServer.translate(\"INTRO\")
 
 
 func _on_Tween_tween_completed(_object, _key):
@@ -36,6 +37,7 @@ func _on_ContinueButton_pressed():
 func _on_BeginButton_pressed():
 	$BeginButton.disabled = true
 	if is_first_start:
+		
 		$IntroTextLabel.show()
 		$ContinueButton.show()
 		$BeginButton.hide()
@@ -105,7 +107,7 @@ anchor_bottom = 1.0
 margin_top = -0.559998
 focus_mode = 0
 custom_fonts/font = SubResource( 3 )
-text = "Продолжить"
+text = "CONTINUE_BUTTON"
 flat = true
 icon_align = 1
 
@@ -135,7 +137,7 @@ autowrap = true
 margin_top = 211.0
 margin_right = 443.0
 margin_bottom = 243.0
-text = "Автор игры - Лёша Лукаш"
+text = "INTRO_CREDITS"
 align = 1
 valign = 3
 
@@ -146,7 +148,7 @@ anchor_bottom = 1.0
 margin_top = 0.440002
 focus_mode = 0
 custom_fonts/font = SubResource( 4 )
-text = "Начать"
+text = "BEGIN_BUTTON"
 flat = true
 
 [connection signal="pressed" from="ContinueButton" to="." method="_on_ContinueButton_pressed"]

@@ -36,10 +36,10 @@ func _ready():
 	var score = get_report_score()
 	
 	if not is_first_launch():
-		$Intro/BeginButton.text = "Продолжить"
+		$Intro/BeginButton.text = TranslationServer.translate("CONTINUE_BUTTON")
 		
 	if score > -1: # Если отчёт был составлен и подтверждён
-		$Intro/BeginButton.text = "Посмотреть итоги"
+		$Intro/BeginButton.text = TranslationServer.translate("GET_RESULTS_BUTTON")
 		$Chat.hide()
 		$Outro.show()
 		$Outro.update_outro(score)
