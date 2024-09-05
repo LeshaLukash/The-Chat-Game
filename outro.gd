@@ -10,7 +10,7 @@ onready var ReportProgressBar: ProgressBar = get_node("%ReportProgressBar")
 func animate_outro(score: int) -> void:
 	$TypingSound.play()
 	# warning-ignore:return_value_discarded
-	ReportProgressBarTween.interpolate_property(ReportProgressBar, "value", 0, score, 5.0, Tween.TRANS_EXPO, Tween.EASE_OUT)
+	ReportProgressBarTween.interpolate_property(ReportProgressBar, "value", 0, score, 5.0, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	# warning-ignore:return_value_discarded
 	ReportProgressBarTween.start()
 
