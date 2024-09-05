@@ -53,6 +53,7 @@ func load_chat(file_path: String = chat_text_file) -> void:
 			if params.empty() or f.eof_reached():
 				clear_chat()
 				printerr("Критическая ошибка при чтении %s, чат не загружен!" %file_path)
+				printerr(params)
 				return
 
 			params.text = f.get_line().c_unescape()

@@ -21,8 +21,8 @@ var correct_answers := {
 	answer2 = [6, "шесть", "six"],
 	answer3 = "bloody_mary01",
 	answer4 = ["джеймс", "james"],
-	answer5 = ["крейга41", "крейга,41", "крейга 41", "крейга, 41", "kraig41", "kraig,41", "kraig 41", "kraig, 41"],
-	answer6 = ["финнеа34", "финеа34", "финнеа,34", "финеа,34", "финнеа 34", "финеа 34", "финеа, 34", "финнеа, 34"]
+	answer5 = ["крейг", "craig", "41"],
+	answer6 = ["финнеа", "phinea", "34", "финеа"]
 }
 
 # Выделенное поле ответа
@@ -111,11 +111,20 @@ func check_correct_answers() -> int:
 					result += 22
 			"QuestionField5":
 				var answer_formatted: String = answer.to_lower().lstrip("улица.,").dedent()
-				if correct_answers["answer5"].has(answer_formatted):
+				var scores := 0
+				for answer_part in correct_answers["answer5"]:
+					if answer_formatted.find(answer_formatted) != -1:
+						scores += 1
+				if scores >= 2:
 					result += 23
 			"QuestionField6":
 				var answer_formatted: String = answer.to_lower().lstrip("улица,.").dedent()
-				if correct_answers["answer6"].has(answer_formatted):
+				var scores := 0
+				
+				for answer_part in correct_answers["answer6"]:
+					if answer_formatted.find(answer_part) != -1:
+						scores += 1
+				if scores >= 2:
 					result += 30
 	print("Ваш результат: " + str(result))
 	return result
