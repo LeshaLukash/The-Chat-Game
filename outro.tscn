@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://outro.gd" type="Script" id=1]
 [ext_resource path="res://theme.tres" type="Theme" id=2]
@@ -8,6 +8,21 @@
 [sub_resource type="DynamicFont" id=1]
 size = 24
 font_data = ExtResource( 3 )
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+void fragment() {
+	vec4 c = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0).rgba;
+	c.r = 1.0 - c.r;
+	c.g = 1.0 - c.g;
+	c.b = 1.0 - c.b;
+	COLOR.rgba = c;
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
 
 [node name="Outro" type="Control"]
 anchor_right = 1.0
@@ -131,6 +146,20 @@ __meta__ = {
 
 [node name="TypingSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+
+[node name="ColorInvertor" type="ColorRect" parent="."]
+visible = false
+material = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 674.0
+margin_bottom = -604.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 0, 2 )
+mouse_filter = 2
+
+[node name="Tween" type="Tween" parent="ColorInvertor"]
 
 [connection signal="tween_completed" from="ReportProgressContainer/ReportProgressBar/Tween" to="." method="_on_ReportProgressBar_tween_completed"]
 [connection signal="tween_completed" from="ReportProgressContainer/Tween" to="." method="_on_ReportProgressContainer_tween_completed"]

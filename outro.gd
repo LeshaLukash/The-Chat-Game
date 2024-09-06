@@ -4,6 +4,7 @@ onready var ReportPercentLabel: Label = get_node("%ReportPercentLabel")
 onready var ResumeLabel: Label = get_node("%ResumeLabel")
 onready var ReportProgressBarTween: Tween = get_node("%ReportProgressBar/Tween")
 onready var ReportProgressBar: ProgressBar = get_node("%ReportProgressBar")
+var report_is_perfect := false
 
 
 # Запускает цепочку анимаций экрана итогов
@@ -18,6 +19,8 @@ func animate_outro(score: int) -> void:
 func update_outro(score: int) -> void:
 	var result_degree: String = TranslationServer.translate("REPORT_PERCENT_DESCRIPTION")
 	var score_str: String = "%d%%" %score
+	if score == 100:
+		report_is_perfect = true
 	
 	if TranslationServer.get_locale() == "en":
 		result_degree = result_degree.insert(15, " " + score_str)
@@ -31,6 +34,10 @@ func update_outro(score: int) -> void:
 func show_outro_immeditely(score := 0) -> void:
 	ReportProgressBar.value = score
 	ReportProgressBar.show()
+	if report_is_perfect:
+		$ReportProgressContainer.hide()
+		$ColorInvertor.rect_min_size.y = 1600
+		$ColorInvertor.show()
 	
 	ReportPercentLabel.self_modulate.a = 1
 	$ReportProgressContainer.rect_position.y = 90
@@ -62,6 +69,14 @@ func get_resume(score: int = 0) -> String:
 
 # Поведение экрана после того, как заполнилась процентная полоска
 func _on_ReportProgressBar_tween_completed(_object, _key):
+	if report_is_perfect:
+		$ReportProgressContainer.hide()
+		$ColorInvertor.show()
+		$ColorInvertor/Tween.interpolate_property($ColorInvertor, "rect_min_size:y",
+				$ColorInvertor.rect_size.y, 1600, 0.5, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+		$ColorInvertor/Tween.start()
+		yield(get_tree().create_timer(0.5), "timeout")
+	
 	ReportPercentLabel.get_node("Tween").interpolate_property(ReportPercentLabel, "self_modulate:a",
 			0, 1, 1.0)
 	ReportPercentLabel.get_node("Tween").start()
@@ -75,8 +90,7 @@ func _on_ReportProgressBar_tween_completed(_object, _key):
 
 
 func _on_ReportProgressContainer_tween_completed(_object, _key):
-	pass # Replace with function body.
-
+	pass
 
 func _on_ResumeLabel_tween_completed(_object, _key):
 	$Credits/Tween.interpolate_property($Credits, "self_modulate:a", 0, 1, 3.0)

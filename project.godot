@@ -60,6 +60,10 @@ translation_remaps={
 }
 translations=PoolStringArray( "res://translation.en.translation", "res://translation.ru.translation" )
 
+[memory]
+
+limits/message_queue/max_size_kb=6144
+
 [physics]
 
 common/enable_pause_aware_picking=true
