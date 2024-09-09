@@ -39,6 +39,9 @@ func _ready():
 		$Intro/BeginButton.text = TranslationServer.translate("CONTINUE_BUTTON")
 		
 	if score > -1: # Если отчёт был составлен и подтверждён
+		$Outro/Music.autoplay = false
+		$Outro/Music.volume_db = -80
+		$Outro/Music.stop()
 		$Intro/BeginButton.text = TranslationServer.translate("GET_RESULTS_BUTTON")
 		$Chat.hide()
 		$Outro.show()

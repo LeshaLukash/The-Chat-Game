@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sad_ending_sound.ogg-dae1326c9731f910b54e5229b3b0149c.oggstr"
+
+[deps]
+
+source_file="res://sounds/sad_ending_sound.ogg"
+dest_files=[ "res://.import/sad_ending_sound.ogg-dae1326c9731f910b54e5229b3b0149c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
