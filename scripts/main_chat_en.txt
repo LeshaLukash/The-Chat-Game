@@ -139,7 +139,7 @@ Watcher, 20:05, 0, 0
 Now we will wait until all participants return to their places, because the last target was further away from everyone else. Until then we are adjourned.
 saxxxy13, 20:06, 0, 1
 yeah, while they're on their way back, I can make it to James and return home.
-Наблюдатель, 22:00, 0, 0
+Watcher, 22:00, 0, 0
 Dear participants, it is time for the second stage.
 leyfin, 22:00, 0, 0
 finally
@@ -147,7 +147,7 @@ leyfin, 22:01, 0, 0
 who is next who is next
 Watcher, 22:01, 0, 0
 This time we want to let the participants who had previously remained in the shadows play.
-Наблюдатель, 22:02, 0, 0
+Watcher, 22:02, 0, 0
 The next target is BigMayfield. Mark's address is 21 Matheson Street. Look for small locked case.
 BigMayfield, 22:02, 0, 0
 damn it

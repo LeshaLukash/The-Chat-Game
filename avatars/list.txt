@@ -2,7 +2,7 @@
 	"default": "res://avatars/default_avatar.png",
 	"Наблюдатель": "res://avatars/avatar_fire.png",
 	"leyfin": "res://avatars/default_avatar.png",
-	"BigMayfield": "res://avatars/godot.png",
+	"BigMayfield": "res://avatars/default_avatar.png",
 	"JS": "res://avatars/mr_pink.png",
 	"bloody_mary01": "res://avatars/avatar_screamface.png"
 }
