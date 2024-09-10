@@ -54,7 +54,9 @@ func _ready():
 		$Report.check_answers_amount()
 		add_crime_date()
 		
-		if TranslationServer.get_locale().find("en") != -1:
+		if TranslationServer.get_locale().find("ru") != -1:
+			$Chat/ChatContainer.chat_text_file = "res://scripts/main_chat_ru.txt"
+		else:
 			$Chat/ChatContainer.chat_text_file = "res://scripts/main_chat_en.txt"
 		$Chat/ChatContainer.load_chat()
 	$Intro.show()

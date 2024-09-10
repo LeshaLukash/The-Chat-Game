@@ -54,7 +54,9 @@ RESULT_FOUR,"The report turned out to be great! There were some mistakes, but th
 RESULT_FIVE,"The report is perfect. You were extremely attentive and did not make a single mistake - thanks to that, you managed to save several participants. The crime scenes were almost untouched, and it was possible to find significant evidence pointing to the organizers of the ""games"". There is no doubt that they will be caught soon, and this, first of all, is your merit.\n\nYour colleagues admire you, because you managed not only to save lives, but also to solve the case almost completely. The management is satisfied with your results, and therefore you can safely expect a bonus this month.\n\nCongratulations on a job well done!","Отчет идеален. Вы были крайне внимательны и не допустили ни одной ошибки, благодаря чему удалось спасти нескольких участников. Места преступления были почти не тронуты, удалось обнаружить весомые улики, указывающие на организаторов «игр». Можно не сомневаться, что в скором времени они будут пойманы, и это, в первую очередь, Ваша заслуга.\n\nВаши коллеги восхищаются Вами, ведь Вам удалось не только спасти жизни, но и практически полностью раскрыть дело. Руководство довольно Вашими результатами, а потому можете смело ожидать в этом месяце премию.\n\nПоздравляем с проделанной работой!"
 OUTRO_CREDITS,"A game by Lesha Lukash 
 Script by ThatRedSpy
-Music by UNIVERSFIELD","Автор игры: Лёша Лукаш
+Music by UNIVERSFIELD
+Testing: 13:6","Автор игры: Лёша Лукаш
 Автор сценария: ThatRedSpy
-Музыка: UNIVERSFIELD"
+Музыка: UNIVERSFIELD
+Тестирование: 13:6"
 CLOSE_GAME_BUTTON,CLOSE THE GAME,ЗАКРЫТЬ ИГРУ

@@ -91,21 +91,26 @@ __meta__ = {
 [node name="Tween" type="Tween" parent="ReportProgressContainer"]
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-anchor_left = 0.113889
-anchor_top = 0.192969
-anchor_right = 0.886111
-anchor_bottom = 0.910937
-rect_clip_content = false
+anchor_left = 0.0958333
+anchor_top = 0.184375
+anchor_right = 0.904167
+anchor_bottom = 0.870313
 scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="ResumeLabel" type="Label" parent="ScrollContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+margin_right = 582.0
+margin_bottom = 878.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ResumeLabel" type="Label" parent="ScrollContainer/HBoxContainer"]
 unique_name_in_owner = true
 self_modulate = Color( 1, 1, 1, 0 )
-margin_right = 556.0
-margin_bottom = 918.999
+margin_right = 563.0
+margin_bottom = 878.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Текст итога"
@@ -115,14 +120,20 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Tween" type="Tween" parent="ScrollContainer/ResumeLabel"]
+[node name="Tween" type="Tween" parent="ScrollContainer/HBoxContainer/ResumeLabel"]
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/HBoxContainer"]
+margin_left = 567.0
+margin_right = 582.0
+margin_bottom = 878.0
+custom_constants/margin_right = 15
 
 [node name="Credits" type="Label" parent="."]
 self_modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.0638889
-anchor_top = 0.921875
+anchor_top = 0.892969
 anchor_right = 0.511111
-anchor_bottom = 0.988281
+anchor_bottom = 0.959375
 margin_right = -3.05176e-05
 custom_fonts/font = SubResource( 1 )
 text = "OUTRO_CREDITS"
@@ -177,7 +188,7 @@ stream = ExtResource( 7 )
 
 [connection signal="tween_completed" from="ReportProgressContainer/ReportProgressBar/Tween" to="." method="_on_ReportProgressBar_tween_completed"]
 [connection signal="tween_completed" from="ReportProgressContainer/Tween" to="." method="_on_ReportProgressContainer_tween_completed"]
-[connection signal="tween_completed" from="ScrollContainer/ResumeLabel/Tween" to="." method="_on_ResumeLabel_tween_completed"]
+[connection signal="tween_completed" from="ScrollContainer/HBoxContainer/ResumeLabel/Tween" to="." method="_on_ResumeLabel_tween_completed"]
 [connection signal="tween_completed" from="Credits/Tween" to="." method="_on_Credits_tween_completed"]
 [connection signal="pressed" from="ExitGameButton" to="." method="_on_ExitGameButton_pressed"]
 [connection signal="timeout" from="ExitGameButton/Timer" to="." method="_on_ExitGameButton_Timer_timeout"]
