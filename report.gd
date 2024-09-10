@@ -111,9 +111,11 @@ func check_correct_answers() -> int:
 					result += 22
 			"QuestionField5":
 				var answer_formatted: String = answer.to_lower().lstrip("улица.,").dedent()
+				print(answer_formatted)
 				var scores := 0
+				
 				for answer_part in correct_answers["answer5"]:
-					if answer_formatted.find(answer_formatted) != -1:
+					if answer_formatted.find(answer_part) != -1:
 						scores += 1
 				if scores >= 2:
 					result += 23
