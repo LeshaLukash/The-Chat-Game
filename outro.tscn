@@ -102,7 +102,7 @@ __meta__ = {
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
 margin_right = 582.0
-margin_bottom = 878.0
+margin_bottom = 878.001
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
