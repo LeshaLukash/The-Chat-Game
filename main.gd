@@ -27,6 +27,13 @@ func _init():
 
 
 func _ready():
+	# Если язык системы русский - ставим игре русский язык
+	# print(OS.get_locale_language())
+	if OS.get_locale_language().find("ru") != -1:
+		TranslationServer.set_locale("ru")
+	else:
+		TranslationServer.set_locale("en")
+	
 	# Отключаем реакцию чата и включаем реакцию интро на ввод
 	$Chat.set_process_input(false)
 	$Intro.set_process_input(true)
@@ -54,7 +61,8 @@ func _ready():
 		$Report.check_answers_amount()
 		add_crime_date()
 		
-		if TranslationServer.get_locale().find("ru") != -1:
+		# Если языком системы не является русский - загружается английская версия чата
+		if OS.get_locale_language().find("ru") != -1:
 			$Chat/ChatContainer.chat_text_file = "res://scripts/main_chat_ru.txt"
 		else:
 			$Chat/ChatContainer.chat_text_file = "res://scripts/main_chat_en.txt"
